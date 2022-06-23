@@ -48,11 +48,12 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
 )
 
 LOCAL_APPS = (
-    'apps.authentication.users'
+    'apps.authentication.users',
+    'apps.reservation',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
