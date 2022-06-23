@@ -11,7 +11,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
 
     MAN = 'M'
-    WOMAN = 'W'
+    WOMAN = 'F'
     OTHER = 'O'
 
     GENDER_IN_CHOICES = [
@@ -117,7 +117,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
 
-    REQUIRED_FIELDS = ['username', 'birth_date']
+    REQUIRED_FIELDS = ['username', 'birth_date', 'gender']
 
     objects = UsersManager()
 
