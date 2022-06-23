@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).ancestor(3)
 
 with open("config.json") as f:
     value = json.loads(f.read())
-    
+
 def get_value(value_title, values=value):
     try:
         return values[value_title]
     except:
-        msg = f"El nombre de la variable {value_title} no existe en el archivo config.json"
+        msg = f"The variable name {value_title} does not exist in the config.json file"
         raise ImproperlyConfigured(msg)
 
 SECRET_KEY = get_value('SECRET_KEY')
