@@ -1,3 +1,4 @@
+from operator import mod
 from django.db import models
 
 # Create your models here.
@@ -6,6 +7,8 @@ class User(models.Model):
     id = models.CharField(max_length=10, primary_key=True)
     name = models.CharField(max_length=35, blank=False, null=False)
     last_name = models.CharField(max_length=35, blank=False, null=False)
+    email = models.EmailField(max_length=255, blank=False, null=False)
+    password = models.CharField(max_length=255, blank=False, null=False )
     birth_date = models.DateField()
     sex = [
         ('F', 'Female'),
@@ -13,6 +16,7 @@ class User(models.Model):
         ('None', 'None'),
     ]
     gender = models.CharField(max_length=5, choices=sex, default=None, null=True, blank=True)
+    # is_staff = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['last_name']
@@ -27,7 +31,7 @@ class User(models.Model):
 
 class Desktop(models.Model):
     id = models.AutoField(primary_key=True)
-    n_desktop = models.CharField(max_length=3)
+    n_desktop = models.CharField('Desktop', max_length=3)
     # amenities = models.CharField(max_length=0)
 
     class Meta:
@@ -40,10 +44,11 @@ class Desktop(models.Model):
 
 class Reservation(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
-    desktop = models.ForeignKey(Desktop, null=False, blank=False, on_delete=models.CASCADE)
-    # date_reservation = models.DateTimeField(auto_now_add=True) Organizar
-    n_hours = models.SmallIntegerField('Cantidad de horas a reservar', default=8)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    desktop = models.ForeignKey(Desktop, on_delete=models.CASCADE)
+    n_hours = models.SmallIntegerField('Number of hours to reserve', default=12)
+    date = models.DateField(auto_now=True, auto_now_add=False)
+    date_reservation = models.DateField('Reservation date', blank=False, null=False)
 
     class Meta:
         ordering = ['date_reservation']
@@ -51,4 +56,4 @@ class Reservation(models.Model):
         verbose_name_plural = 'Reservations'
 
     def __str__(self) -> str:
-        return f'{self.user} for: {self.n_hours} hour(s) (Desk: {self.desktop})'
+        return f'{self.user}. Booking date {self.date_reservation} on the desktop {self.desktop}'
