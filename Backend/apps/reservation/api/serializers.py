@@ -5,16 +5,12 @@ class DesktopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Desktop
         fields = (
-            'id',
-            'n_desktop',
+            '__all__',
         )
-        
+
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = (
-            'id',
-            'user',
-            'desktop',
-            'n_hours',
+            '__all__',
         )

@@ -1,14 +1,11 @@
-from datetime import date
-
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.utils import timezone
-
 from .managers import UsersManager
+from django.utils import timezone
+from django.db import models
+
+
 # Create your models here.
-
-
 
 class UsersModel(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
@@ -24,53 +21,62 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     ]
 
     username = models.CharField(
-        "Usuario",
+        "User",
         max_length=150,
         unique=True,
         help_text="Nombre de usuario, Requerido. 150 caracteres o menos.",
         validators=[username_validator],
         error_messages={
             "único": "Este nombre de usuario ya está en uso.",
-        }
+        },
+        blank=False,
+        null=False,
     )
 
     email = models.EmailField(
-        "Correo Electrónico",
+        "E-mail address",
         max_length=254,
         unique=True,
         help_text="Correo electrónico, Requerido. 254 caracteres o menos.",
         error_messages={
             "único": "Este correo electrónico ya está en uso.",
-        }
+        },
+        blank=False,
+        null=False,
     )
 
     first_name = models.CharField(
-        "Nombres",
+        "Names",
         max_length=35,
-        help_text="Nombres, Requerido. 35 caracteres o menos."
+        help_text="Nombres, Requerido. 35 caracteres o menos.",
+        blank=False,
+        null=False,
         #
     )
 
     last_name = models.CharField(
-        "Apellidos",
+        "Surname",
         max_length=35,
-        help_text="Apellidos, Requerido. 35 caracteres o menos."
+        help_text="Apellidos, Requerido. 35 caracteres o menos.",
+        blank=False,
+        null=False,
         #
     )
 
     birth_date = models.DateField(
-        "Fecha de Nacimiento",
+        "Date of birth",
         #
     )
 
     gender = models.CharField(
-        "¿Con cuál genero te identificas?",
+        "Which gender do you identify with?",
         choices=GENDER_IN_CHOICES,
-        max_length=1
+        max_length=1,
+        default=None,
     )
 
     verification_code = models.CharField(
-        'Código de verificación',
+        'Verification code',
         max_length=4,
         default='0000',
         help_text="Requerido. 4 carácteres o menos. Generado automáticamente y llega al correo",
@@ -80,31 +86,31 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     )
 
     is_staff = models.BooleanField(
-        "Es un administrador",
+        "Is an administrator",
         default=False,
         help_text="Designa si el usuario puede acceder al administrador",
     )
 
     is_active = models.BooleanField(
-        'Es un usuario activo',
+        'Is an active user',
         default=False,
         help_text="Designa si el usuario está activo",
     )
 
     date_joined = models.DateTimeField(
-        'Fecha de cración',
+        'Date of creation',
         default=timezone.now,
         help_text="Fecha de creación del usuario",
     )
 
     updated = models.DateTimeField(
-        'Fecha de edición',
+        'Date of issue',
         auto_now=True,
         help_text="Fecha de edición del usuario",
     )
 
     order = models.PositiveIntegerField(
-        'Orden',
+        'Order',
         default=0,
         help_text="Orden de visualización",
     )
@@ -116,12 +122,11 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     objects = UsersManager()
 
     class Meta:
-        verbose_name = 'Usuario'
-        verbose_name_plural = 'Usuarios'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
         unique_together = ('username', 'email')
         db_table = 'apps_authentication_users'
         ordering = ['order']
 
     def __str__(self) -> str:
         return f"{self.id} - {self.username} - {self.email}"
-    

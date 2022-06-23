@@ -18,13 +18,13 @@ def get_value(value_title, values=value):
     try:
         return values[value_title]
     except:
-        msg = f"El nombre de la variable {value_title} no existe en el archivo config.json"
+        msg = f"The variable name {value_title} does not exist in the config.json file"
         raise ImproperlyConfigured(msg)
 
 if get_value("ENVIRONMENT") == "local":
-    print("Entorno local")
+    print("Local environment")
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'encora_workplace.settings.local')
-    
+
 elif get_value("ENVIRONMENT") == "production":
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'encora_workplace.settings.production')
 
