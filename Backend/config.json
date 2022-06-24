@@ -10,7 +10,7 @@
         ]
     },
     "SECRET_KEY": "django-insecure-skc1_x$v!m337bt7m7w!t3w2*)sah+r8r+ttnol(3md4q5a8b*",
-    "LANGUAGE_CODE": "es-co",
+    "LANGUAGE_CODE": "en-us",
     "TIME_ZONE": "America/Bogota",
     "ALLOWED_HOSTS": {
         "local": [

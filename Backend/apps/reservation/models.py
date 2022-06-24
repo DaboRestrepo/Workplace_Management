@@ -63,6 +63,8 @@ class Reservation(models.Model):
         verbose_name = 'Reservation'
         verbose_name_plural = 'Reservations'
         ordering = ['date_reservation']
+        unique_together = ('desktop', 'date_reservation')
+
 
     def __str__(self) -> str:
         return f'{self.user}. Booking date {self.date_reservation} on the desktop {self.desktop}'
