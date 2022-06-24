@@ -50,6 +50,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'rest_framework',
     'corsheaders',
+    'import_export',
 )
 
 LOCAL_APPS = (

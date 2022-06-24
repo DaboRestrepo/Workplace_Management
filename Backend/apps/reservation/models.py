@@ -3,11 +3,8 @@ from ..authentication.users.models import UsersModel
 
 # Create your models here.
 
-class Desktop(models.Model):
 
-    id = models.AutoField(
-        primary_key=True
-    )
+class Desktop(models.Model):
 
     n_desktop = models.CharField(
         max_length=3
@@ -24,23 +21,16 @@ class Desktop(models.Model):
     def __str__(self) -> str:
         return self.n_desktop
 
-class Reservation(models.Model):
 
-    id = models.AutoField(
-        primary_key=True
-    )
+class Reservation(models.Model):
 
     user = models.ForeignKey(
         UsersModel,
-        null=False,
-        blank=False,
         on_delete=models.CASCADE
     )
 
     desktop = models.ForeignKey(
         Desktop,
-        null=False,
-        blank=False,
         on_delete=models.CASCADE
     )
 
@@ -51,14 +41,13 @@ class Reservation(models.Model):
 
     date_reservation = models.DateField(
         'Reservation date',
-        blank=False,
-        null=False
     )
 
     date = models.DateField(
         auto_now=True,
         auto_now_add=False
     )
+
     class Meta:
         verbose_name = 'Reservation'
         verbose_name_plural = 'Reservations'

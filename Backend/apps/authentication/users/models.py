@@ -1,11 +1,17 @@
+from datetime import date
+
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from .managers import UsersManager
+
 from django.utils import timezone
+
 from django.db import models
 
+from .managers import UsersManager
 
 # Create your models here.
+
 
 class UsersModel(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
@@ -28,9 +34,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         validators=[username_validator],
         error_messages={
             "único": "Este nombre de usuario ya está en uso.",
-        },
-        blank=False,
-        null=False,
+        }
     )
 
     email = models.EmailField(
@@ -41,16 +45,12 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         error_messages={
             "único": "Este correo electrónico ya está en uso.",
         },
-        blank=False,
-        null=False,
     )
 
     first_name = models.CharField(
         "Name",
         max_length=35,
         help_text="Nombres, Requerido. 35 caracteres o menos.",
-        blank=False,
-        null=False,
         #
     )
 
@@ -61,6 +61,12 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         blank=False,
         null=False,
         #
+    )
+
+    full_name = models.CharField(
+        "Nombres Completos",
+        default="",
+        max_length=70,
     )
 
     birth_date = models.DateField(
@@ -115,9 +121,16 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         help_text="Orden de visualización",
     )
 
+    age = models.PositiveIntegerField(
+        'Edad',
+        default=0,
+        help_text="Edad del usuario",
+    )
+
     USERNAME_FIELD = 'email'
 
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'birth_date', 'gender']
+    REQUIRED_FIELDS = ['username', 'first_name',
+                       'last_name', 'birth_date', 'gender']
 
     objects = UsersManager()
 
@@ -127,6 +140,19 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         unique_together = ('username', 'email')
         db_table = 'apps_authentication_users'
         ordering = ['order']
+
+    def save(self, *args, **kwargs):
+        self.full_name = f"{self.first_name} {self.last_name}"
+
+        self.age = date.today().year - self.birth_date.year - (
+            (
+                date.today().month, date.today().day
+            ) < (
+                self.birth_date.month, self.birth_date.day
+            )
+        )
+
+        super(UsersModel, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.id} - {self.username} - {self.email}"
