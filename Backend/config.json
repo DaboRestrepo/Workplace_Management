@@ -18,7 +18,7 @@
             "127.0.0.1"
         ],
         "production": [
-            "dabo.tech",
+            "*.dabo.tech",
             "www.dabo.tech"
         ]
     },
@@ -33,16 +33,16 @@
     },
     "DB_CONN_MAX_AGE": 5,
     "ENGINE": "django.db.backends.postgresql_psycopg2",
-    "NAME": "journal_app_db",
-    "USER": "journal_app_user",
-    "PASSWORD": "journal_app_password",
+    "NAME": "encora_workplace_db",
+    "USER": "encora_workplace_user",
+    "PASSWORD": "encora_workplace_password",
     "HOST": "localhost",
     "PORT": "5432",
     "EMAIL_USE_SSL": "True",
     "EMAIL_USE_TLS": "False",
-    "EMAIL_BACKEND" : "django_smtp_ssl.SSLEmailBackend",
-    "EMAIL_HOST" : "mail.dabo.com",
-    "EMAIL_PORT" : 465,
-    "EMAIL_HOST_USER" : "info@dabo.tech",
-    "EMAIL_HOST_PASSWORD" : "contraseña_email_info"
+    "EMAIL_BACKEND": "django_smtp_ssl.SSLEmailBackend",
+    "EMAIL_HOST": "mail.sebasmd.tech",
+    "EMAIL_PORT": 465,
+    "EMAIL_HOST_USER": "info@sebasmd.com",
+    "EMAIL_HOST_PASSWORD": "+Lq5Jzm&gl"
 }

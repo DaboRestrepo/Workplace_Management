@@ -4,17 +4,10 @@ from ..models import Desktop, Reservation
 class DesktopSerializer(serializers.ModelSerializer):
     class Meta:
         model = Desktop
-        fields = (
-            'id',
-            'n_desktop',
-        )
+        fields = ('__all__')
         
 class ReservationSerializer(serializers.ModelSerializer):
+       
     class Meta:
         model = Reservation
-        fields = (
-            'id',
-            'user',
-            'desktop',
-            'n_hours',
-        )
+        fields = ('__all__')

@@ -25,13 +25,15 @@ BASE_DIR = Path(__file__).ancestor(3)
 
 with open("config.json") as f:
     value = json.loads(f.read())
-    
+
+
 def get_value(value_title, values=value):
     try:
         return values[value_title]
     except:
         msg = f"El nombre de la variable {value_title} no existe en el archivo config.json"
         raise ImproperlyConfigured(msg)
+
 
 SECRET_KEY = get_value('SECRET_KEY')
 
@@ -49,6 +51,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'rest_framework',
     'corsheaders',
+    'import_export',
 )
 
 LOCAL_APPS = (
