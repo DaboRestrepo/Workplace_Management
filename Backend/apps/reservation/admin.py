@@ -1,3 +1,4 @@
+from dataclasses import fields
 from import_export.admin import ImportExportActionModelAdmin
 
 from import_export import resources
@@ -15,6 +16,7 @@ class DesktopResource(resources.ModelResource):
             "n_desktop"
         )
 
+
 @admin.register(Desktop)
 class DesktopAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     """
@@ -25,12 +27,23 @@ class DesktopAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     search_fields = ("n_desktop",)
 
 
-class ReservationAdmin(admin.ModelAdmin):
+class ReservationResource(resources.ModelResource):
+    class Meta:
+        model = Reservation
+        fields = (
+            "user",
+            "desktop",
+            "n_hours",
+            "date_reservation",
+            "date",
+        )
+
+
+@admin.register(Reservation)
+class ReservationAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
     """
     Customize reservation admin panel.
     """
+    resource_class = ReservationResource
     list_display = ("user", "desktop", "n_hours",)
     search_fields = ("desktop",)
-
-
-admin.site.register(Reservation, ReservationAdmin)

@@ -26,7 +26,8 @@ class Reservation(models.Model):
 
     user = models.ForeignKey(
         UsersModel,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        db_column="email"
     )
 
     desktop = models.ForeignKey(
@@ -53,7 +54,6 @@ class Reservation(models.Model):
         verbose_name_plural = 'Reservations'
         ordering = ['date_reservation']
         unique_together = ('desktop', 'date_reservation')
-
 
     def __str__(self) -> str:
         return f'{self.user}. Booking date {self.date_reservation} on the desktop {self.desktop}'
