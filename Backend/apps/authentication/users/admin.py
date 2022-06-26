@@ -35,13 +35,20 @@ sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
 
 
 class UserAdminResource(resources.ModelResource):
+    """Resource of Admin User"""
     def before_import_row(self, row, *args, **kwargs):
+        """Override to add additional logic.
+        Hash the password for database storage."""
         password = row['password']
         row['password'] = make_password(password)
 
         super().after_save_instance(instance, using_transactions, dry_run)
 
     class Meta:
+        """Change the model's behaivor:
+        Based in User model.
+        Fields to use.
+        Order to export the data."""
         model = UsersModel
         fields = (
             "id",
@@ -61,6 +68,7 @@ class UserAdminResource(resources.ModelResource):
 
 @admin.register(UsersModel)
 class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
+    """Admin custom to model user."""
 
     resource_class = UserAdminResource
 
@@ -94,7 +102,8 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
         ),
     )
 
-    list_display = ("first_name", "last_name", "email", "is_staff", "is_active")
+    list_display = ("first_name", "last_name", "email",
+                    "is_staff", "is_active")
 
     list_display_links = ("first_name", "last_name", "email",)
 

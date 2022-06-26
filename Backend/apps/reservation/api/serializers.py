@@ -3,21 +3,20 @@ from ..models import Desktop, Reservation
 
 
 class DesktopSerializer(serializers.ModelSerializer):
+    """Serializer based in Desktop model."""
     class Meta:
         model = Desktop
-        fields = (
-            'n_desktop',
-        )
+        fields = '__all__'
 
 
 class ReservationSerializer(serializers.ModelSerializer):
+    """Serializer based in Reservation model."""
     class Meta:
         model = Reservation
-        fields = (
-            'user', 'desktop', 'n_hours', 'date_reservation', 'date'
-        )
+        fields = '__all__'
 
     def to_representation(self, instance):
+        """Represent the JSON with all the information."""
         return {
             'user': instance.user.email,
             'desktop': instance.desktop.n_desktop,

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.hashers import make_password
 
+
 class UsersManager(BaseUserManager, models.Manager):
 
     def _create_user(self, username, email, password, is_active, is_staff, is_superuser, **extra_fields):
@@ -10,11 +11,11 @@ class UsersManager(BaseUserManager, models.Manager):
         email = self.normalize_email(email)
 
         user = self.model(
-            username = username,
-            email = email,
-            is_staff = is_staff,
-            is_superuser = is_superuser,
-            is_active = is_active,
+            username=username,
+            email=email,
+            is_staff=is_staff,
+            is_superuser=is_superuser,
+            is_active=is_active,
             **extra_fields
         )
 
