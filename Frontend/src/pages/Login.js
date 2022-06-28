@@ -15,8 +15,8 @@ class Login extends Component {
         }
     }
 
-    handleChange=async e=> {
-        await this.setState({
+    handleChange= e => {
+        this.setState({
             form:{
                 ...this.state.form,
                 [e.target.name]: e.target.value
@@ -24,7 +24,7 @@ class Login extends Component {
         });
     }
 
-    iniciarSesion=async() => {
+    iniciarSesion = async() => {
         await axios.get(baseUrl, {params: {email: this.state.form.email, password: this.state.form.password}})
         .then(response => {
             return response.data;
@@ -72,33 +72,56 @@ class Login extends Component {
 
     render() {
         return (
-        <div className='containerPrincipal'>
-            <div className='containerSecundario'>
-                <div className='form-group'>
-                    <label>Email: </label>
-                    <br />
-                    <input
-                        type='text'
-                        className='form-control'
-                        name='email'
-                        onChange={this.handleChange}
-                    />
-                    <br />
-                    <label>Password: </label>
-                    <br />
-                    <input
-                        type='password'
-                        className='form-control'
-                        name='password'
-                        onChange={this.handleChange}
-                    />
-                    <br />
-                    <button className='btn btn-primary' onClick={() => this.iniciarSesion()} >Login</button>
-                </div>
+            <div className="login-wrap">
+            	<div className="login-html">
+            		<input id="tab-1" type="radio" name="tab" className="sign-in" defaultChecked /><label htmlFor="tab-1" className="tab">Sign In</label>
+            		<input id="tab-2" type="radio" name="tab" className="for-pwd" /><label htmlFor="tab-2" className="tab">Forgot Password</label>
+            		<div className="login-form">
+            			<div className="sign-in-htm">
+            				<div className="group">
+            					<label htmlFor="user" className="label">Username or Email</label>
+            					<input
+                                    type='text'
+                                    className='input'
+                                    name='email'
+                                    onChange={this.handleChange}
+                                />
+            				</div>
+            				<div className="group">
+            					<label htmlFor="pass" className="label">Password</label>
+            					<input
+                                    type='password'
+                                    className='input'
+                                    name='password'
+                                    onChange={this.handleChange}
+                                />
+            				</div>
+            				<div className="group">
+            					<input type="submit" className="button" value="Sign In" onClick={() => this.iniciarSesion()} />
+            					{/* <input type="submit" className="button" value="Register" onClick={() => this.iniciarSesion()} /> */}
+            				</div>
+            				<div className="hr"></div>
+            			</div>
+            			<div className="for-pwd-htm">
+            				<div className="group">
+            					<label htmlFor="user" className="label">Username or Email</label>
+            					<input
+                                    type="text"
+                                    className="input"
+                                    name='email'
+                                    onChange={this.handleChange}
+                                />
+            				</div>
+            				<div className="group">
+            					<input type="submit" className="button" value="Reset Password" />
+            				</div>
+            				<div className="hr"></div>
+                    	</div>
+                    </div>
+            	</div>
             </div>
-        </div>
-    );
-  }
+        );
+    }
 }
 
 export default Login;
