@@ -21,9 +21,9 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     OTHER = 'O'
 
     GENDER_IN_CHOICES = [
-        (MAN, 'Hombre'),
-        (WOMAN, 'Mujer'),
-        (OTHER, 'Otro')
+        (MAN, 'Man'),
+        (WOMAN, 'Female'),
+        (OTHER, 'Other')
     ]
 
     username = models.CharField(
