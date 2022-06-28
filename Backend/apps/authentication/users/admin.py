@@ -42,7 +42,7 @@ class UserAdminResource(resources.ModelResource):
         password = row['password']
         row['password'] = make_password(password)
 
-        super().after_save_instance(instance, using_transactions, dry_run)
+        # super().after_save_instance(instance, using_transactions, dry_run)
 
     class Meta:
         """Change the model's behaivor:
