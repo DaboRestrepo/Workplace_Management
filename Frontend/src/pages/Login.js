@@ -15,8 +15,8 @@ class Login extends Component {
         }
     }
 
-    handleChange=async e=> {
-        await this.setState({
+    handleChange= e => {
+        this.setState({
             form:{
                 ...this.state.form,
                 [e.target.name]: e.target.value
@@ -24,7 +24,7 @@ class Login extends Component {
         });
     }
 
-    iniciarSesion=async() => {
+    iniciarSesion = async() => {
         await axios.get(baseUrl, {params: {email: this.state.form.email, password: this.state.form.password}})
         .then(response => {
             return response.data;
