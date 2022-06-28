@@ -5,7 +5,8 @@ from django.contrib.auth.hashers import make_password
 
 class UsersManager(BaseUserManager, models.Manager):
 
-    def _create_user(self, username, email, password, is_active, is_staff, is_superuser, **extra_fields):
+    def _create_user(self, username, email, password, is_active, is_staff,
+                     is_superuser, **extra_fields):
         if not username:
             raise ValueError('Enter a user')
         email = self.normalize_email(email)
@@ -31,7 +32,6 @@ class UsersManager(BaseUserManager, models.Manager):
         extra_fields.setdefault('is_active', False)
 
         return self._create_user(username, email, password, **extra_fields)
-
 
     def create_superuser(self, username, email, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
