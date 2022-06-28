@@ -21,9 +21,9 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     OTHER = 'O'
 
     GENDER_IN_CHOICES = [
-        (MAN, 'Hombre'),
-        (WOMAN, 'Mujer'),
-        (OTHER, 'Otro')
+        (MAN, 'Man'),
+        (WOMAN, 'Female'),
+        (OTHER, 'Other')
     ]
 
     username = models.CharField(
@@ -69,7 +69,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         max_length=70,
     )
 
-    birth_date = models.DateField(
+    birthday = models.DateField(
         "Date of birth",
         #
     )
@@ -130,7 +130,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
     REQUIRED_FIELDS = ['username', 'first_name',
-                       'last_name', 'birth_date', 'gender']
+                       'last_name', 'birthday', 'gender']
 
     objects = UsersManager()
 
@@ -144,11 +144,11 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     def save(self, *args, **kwargs):
         self.full_name = f"{self.first_name} {self.last_name}"
 
-        self.age = date.today().year - self.birth_date.year - (
+        self.age = date.today().year - self.birthday.year - (
             (
                 date.today().month, date.today().day
             ) < (
-                self.birth_date.month, self.birth_date.day
+                self.birthday.month, self.birthday.day
             )
         )
 
