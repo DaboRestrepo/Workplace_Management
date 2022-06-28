@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 import json
 from django.core.exceptions import ImproperlyConfigured
 from unipath import Path
@@ -25,12 +26,12 @@ BASE_DIR = Path(__file__).ancestor(3)
 
 with open("config.json") as f:
     value = json.loads(f.read())
-    
+
 def get_value(value_title, values=value):
     try:
         return values[value_title]
     except:
-        msg = f"El nombre de la variable {value_title} no existe en el archivo config.json"
+        msg = f"The variable name {value_title} does not exist in the config.json file"
         raise ImproperlyConfigured(msg)
 
 SECRET_KEY = get_value('SECRET_KEY')
@@ -49,6 +50,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     'rest_framework',
     'corsheaders',
+    'import_export',
 )
 
 LOCAL_APPS = (
@@ -68,14 +70,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000/',
+)
 
 ROOT_URLCONF = 'encora_workplace.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child('public', 'templates')],
+        'DIRS': [
+            BASE_DIR.child('public', 'templates')
+            # os.path.join(BASE_DIR, 'frontend/build')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,7 +136,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR.child('public', 'static')]
+STATICFILES_DIRS = [
+    BASE_DIR.child('public', 'static'),
+    # os.path.join(BASE_DIR,'frontend/build/static'),
+]
 
 
 MEDIA_URL = '/media/'

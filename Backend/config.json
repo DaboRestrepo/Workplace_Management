@@ -10,7 +10,7 @@
         ]
     },
     "SECRET_KEY": "django-insecure-skc1_x$v!m337bt7m7w!t3w2*)sah+r8r+ttnol(3md4q5a8b*",
-    "LANGUAGE_CODE": "es-co",
+    "LANGUAGE_CODE": "en-us",
     "TIME_ZONE": "America/Bogota",
     "ALLOWED_HOSTS": {
         "local": [
@@ -33,9 +33,9 @@
     },
     "DB_CONN_MAX_AGE": 5,
     "ENGINE": "django.db.backends.postgresql_psycopg2",
-    "NAME": "journal_app_db",
-    "USER": "journal_app_user",
-    "PASSWORD": "journal_app_password",
+    "NAME": "encora_db",
+    "USER": "encora",
+    "PASSWORD": "encora_2005",
     "HOST": "localhost",
     "PORT": "5432",
     "EMAIL_USE_SSL": "True",
