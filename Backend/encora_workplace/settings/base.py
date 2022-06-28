@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).ancestor(3)
 with open("config.json") as f:
     value = json.loads(f.read())
 
+
 def get_value(value_title, values=value):
     try:
         return values[value_title]

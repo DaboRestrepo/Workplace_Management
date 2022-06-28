@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/encora_workplace/', include('apps.reservation.api.routers')),
     path('api/encora_workplace/users', include('apps.authentication.users.api.routers')),
-    path('', login.as_view(), name='login'),
+    # path('', login.as_view(), name='login'),
     # path('', TemplateView.as_view(template_name='index.html')),
 ]
