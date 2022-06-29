@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
-import '../css/Login.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 
-const baseUrl = 'http://127.0.0.1:8000/api/encora_workplace/usersuser/';
-const cookies = new Cookies();
-
-export default class Login extends Component {
+export default class Register extends Component {
     state = {
         form:{
             email: '',
@@ -16,7 +9,7 @@ export default class Login extends Component {
         }
     }
 
-    handleChange= e => {
+    handlechange= e => {
         this.setState({
             form:{
                 ...this.state.form,
@@ -24,53 +17,7 @@ export default class Login extends Component {
             }
         });
     }
-
-    iniciarSesion = async() => {
-        await axios.get(baseUrl, {params: {email: this.state.form.email, password: this.state.form.password}})
-        .then(response => {
-            return response.data;
-        })
-        .then(response => {
-            if (response.length > 0) {
-                var respuesta=response[0];
-                cookies.set('id', respuesta.id, {path: '/'});
-                cookies.set('last_login', respuesta.last_login, {path: '/'});
-                cookies.set('is_superuser', respuesta.is_superuser, {path: '/'});
-                cookies.set('username', respuesta.username, {path: '/'});
-                cookies.set('email', respuesta.email, {path: '/'});
-                cookies.set('first_name', respuesta.first_name, {path: '/'});
-                cookies.set('last_name', respuesta.last_name, {path: '/'});
-                cookies.set('full_name', respuesta.full_name, {path: '/'});
-                cookies.set('birthday', respuesta.birthday, {path: '/'});
-                cookies.set('gender', respuesta.gender, {path: '/'});
-                cookies.set('verification_code', respuesta.verification_code, {path: '/'});
-                cookies.set('is_staff', respuesta.is_staff, {path: '/'});
-                cookies.set('is_active', respuesta.is_active, {path: '/'});
-                cookies.set('date_joined', respuesta.date_joined, {path: '/'});
-                cookies.set('updated', respuesta.updated, {path: '/'});
-                cookies.set('order', respuesta.order, {path: '/'});
-                cookies.set('age', respuesta.age, {path: '/'});
-                cookies.set('groups', respuesta.groups, {path: '/'});
-                cookies.set('user_permissions', respuesta.user_permissions, {path: '/'});
-                alert(`Welcome ${respuesta.first_name}`);
-
-                window.location.href = './menu';
-
-            } else{
-                alert('Email or password does not match');
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
-    componentDidMount() {
-        if (cookies.get('email')) {
-            window.location.href = './menu';
-        }
-    }
-
+    
     render() {
         return (
             <div className='login-wrap'>
@@ -101,7 +48,7 @@ export default class Login extends Component {
             					<input type='submit' className='button' value='Sign In' onClick={() => this.iniciarSesion()} />
             					{/* <input type='submit' className='button' value='Register' onClick={() => this.iniciarSesion()} /> */}
             				</div>
-                            <p className='linktext'>Don't have an account?<Link to='/register' className='linktext'> Register</Link></p>
+                            <p className='linktext'>Already have an account?<Link to='/' className='linktext'> Login</Link></p>
             				<div className='hr'></div>
             			</div>
             			<div className='for-pwd-htm'>
@@ -124,4 +71,5 @@ export default class Login extends Component {
             </div>
         );
     }
+
 }

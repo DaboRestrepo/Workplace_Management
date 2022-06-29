@@ -1,5 +1,5 @@
 body {
-	margin: 0;
+	margin-top: 0;
 	color: #edf3ff;
 	background: #c8c8c8;
 	background: url(https://hdqwalls.com/download/material-design-4k-2048x1152.jpg) fixed;
@@ -30,7 +30,8 @@ a {
 
 .login-wrap {
 	width: 100%;
-	margin: auto;
+	margin-top: 80px;
+	margin-left: 420px;
 	max-width: 510px;
 	min-height: 510px;
 	position: relative;
@@ -203,4 +204,10 @@ a {
 
 .foot-lnk {
 	text-align: center;
+}
+
+.linktext {
+	color: #edf3ff;
+	font-size: x-large;
+
 }
