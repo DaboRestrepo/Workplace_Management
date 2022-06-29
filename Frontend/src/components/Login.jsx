@@ -101,7 +101,7 @@ export default class Login extends Component {
             					<input type='submit' className='button' value='Sign In' onClick={() => this.iniciarSesion()} />
             					{/* <input type='submit' className='button' value='Register' onClick={() => this.iniciarSesion()} /> */}
             				</div>
-                            <p className='linktext'>Don't have an account?<Link to='/register' className='linktext'> Register</Link></p>
+                            <p className='linktext'>Don't have an account?<Link to='/signup' className='linktext'> Register</Link></p>
             				<div className='hr'></div>
             			</div>
             			<div className='for-pwd-htm'>
