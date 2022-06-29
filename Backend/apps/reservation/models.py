@@ -43,7 +43,7 @@ class Reservation(models.Model):
     )
 
     n_hours = models.DecimalField(
-        'Cantidad de horas a reservar',
+        'Reserve hours',
         default=0,
         max_digits=4,
         decimal_places=2,
@@ -52,26 +52,32 @@ class Reservation(models.Model):
 
     date_reservation = models.DateField(
         'Reservation date',
+        help_text="Fecha reservada"
     )
 
     date = models.DateField(
+        'Current date',
         auto_now=True,
-        auto_now_add=False
+        auto_now_add=False,
+        help_text="Fecha actual"
     )
 
     start_hour = models.TimeField(
-        'Hora de inicio (hh:mm:ss)',
-        default="00:00:00"
+        'Start time (hh:mm:ss)',
+        default="00:00:00",
+        help_text="Hora de inicio de la reserva"
     )
 
     finish_hour = models.TimeField(
-        'Hora de finalización (hh:mm:ss)',
-        default="00:00:00"
+        'End time (hh:mm:ss)',
+        default="00:00:00",
+        help_text="Hora de finalización de la reserva"
     )
 
     status = models.BooleanField(
-        'Estado de la reserva',
-        default=True
+        'Reserve status',
+        default=True,
+        help_text="Estado de la reserva"
     )
 
     class Meta:
