@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 from ..authentication.users.models import UsersModel
 
@@ -62,15 +64,13 @@ class Reservation(models.Model):
         help_text="Fecha actual"
     )
 
-    start_hour = models.TimeField(
+    start_hour = models.DateTimeField(
         'Start time (hh:mm:ss)',
-        default="00:00:00",
         help_text="Hora de inicio de la reserva"
     )
 
-    finish_hour = models.TimeField(
+    finish_hour = models.DateTimeField(
         'End time (hh:mm:ss)',
-        default="00:00:00",
         help_text="Hora de finalización de la reserva"
     )
 
@@ -87,15 +87,20 @@ class Reservation(models.Model):
         unique_together = ('desktop', 'date_reservation')
 
     def save(self, *args, **kwargs):
-        time_start = timedelta(hours=self.start_hour.hour,
+        time_start = timedelta(days=self.start_hour.day,
+                               hours=self.start_hour.hour,
                                minutes=self.start_hour.minute,
                                seconds=self.start_hour.second).total_seconds()
-        time_end = timedelta(hours=self.finish_hour.hour,
+        time_end = timedelta(days=self.finish_hour.day,
+                             hours=self.finish_hour.hour,
                              minutes=self.finish_hour.minute,
                              seconds=self.finish_hour.second).total_seconds()
         self.n_hours = float(((time_end - time_start) / 60) / 60)
 
-        super(Reservation, self).save(*args, **kwargs)
+        if self.n_hours > 12:
+            return
+        else:
+            super(Reservation, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f'{self.user}. Booking date {self.date_reservation} on the desktop {self.desktop}'
