@@ -10,6 +10,10 @@ class Desktop(models.Model):
         max_length=3
         #
     )
+    # metting_room = models.CharField(
+    #     'Sala de reuniones',
+    #     max_length=3
+    # )
 
     # amenities = models.CharField(max_length=0)
 
@@ -47,6 +51,12 @@ class Reservation(models.Model):
     date = models.DateField(
         auto_now=True,
         auto_now_add=False
+    )
+
+    status = models.BooleanField(
+        'Estado de la reserva'
+        default=True,
+        verbose_name='Estado'
     )
 
     class Meta:

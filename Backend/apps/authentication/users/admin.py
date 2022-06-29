@@ -97,7 +97,8 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username", "password1", "password2", "birth_date", "gender"),
+                "fields": ("username", "password1",
+                           "password2", "birthday", "gender"),
             },
         ),
     )
