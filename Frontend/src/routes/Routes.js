@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from '../pages/Login';
-import Menu from '../pages/Menu';
+import Login from '../components/Login';
+import Menu from '../components/Menu';
 
-function App() {
+export default function App() {
     return (
         <BrowserRouter>
             <Routes>
@@ -13,5 +13,3 @@ function App() {
         </BrowserRouter>
     );
 }
-
-export default App;

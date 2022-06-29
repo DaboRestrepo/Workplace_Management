@@ -7,7 +7,7 @@ import Cookies from 'universal-cookie';
 const baseUrl = 'http://127.0.0.1:8000/api/encora_workplace/usersuser/';
 const cookies = new Cookies();
 
-class Login extends Component {
+export default class Login extends Component {
     state = {
         form:{
             email: '',
@@ -123,5 +123,3 @@ class Login extends Component {
         );
     }
 }
-
-export default Login;
