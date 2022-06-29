@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-class Menu extends Component {
+export default class Menu extends Component {
     cerrarSesion=()=>{
         cookies.remove('id', {path: '/'});
         cookies.remove('last_login', {path: '/'});
@@ -64,5 +64,3 @@ class Menu extends Component {
         );
     }
 }
-
-export default Menu;
