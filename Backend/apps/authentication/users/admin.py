@@ -22,10 +22,8 @@ from django.utils.decorators import method_decorator
 from django.utils.html import escape
 from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
-from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-from django.template.loader import render_to_string
 
 from apps.authentication.users.models import UsersModel
 
@@ -97,8 +95,7 @@ class UserAdmin(ImportExportActionModelAdmin, admin.ModelAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": ("username", "password1",
-                           "password2", "birthday", "gender"),
+                "fields": ("first_name", "last_name", "username", "password1", "password2", "birthday", "gender"),
             },
         ),
     )
