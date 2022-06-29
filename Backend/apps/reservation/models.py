@@ -1,5 +1,8 @@
 from django.db import models
+
 from ..authentication.users.models import UsersModel
+
+from datetime import timedelta
 
 # Create your models here.
 
@@ -39,9 +42,12 @@ class Reservation(models.Model):
         on_delete=models.CASCADE
     )
 
-    n_hours = models.SmallIntegerField(
+    n_hours = models.DecimalField(
         'Cantidad de horas a reservar',
-        default=12
+        default=0,
+        max_digits=4,
+        decimal_places=2,
+        help_text="Número de horas reservadas"
     )
 
     date_reservation = models.DateField(
@@ -53,10 +59,19 @@ class Reservation(models.Model):
         auto_now_add=False
     )
 
+    start_hour = models.TimeField(
+        'Hora de inicio (hh:mm:ss)',
+        default="00:00:00"
+    )
+
+    finish_hour = models.TimeField(
+        'Hora de finalización (hh:mm:ss)',
+        default="00:00:00"
+    )
+
     status = models.BooleanField(
-        'Estado de la reserva'
-        default=True,
-        verbose_name='Estado'
+        'Estado de la reserva',
+        default=True
     )
 
     class Meta:
@@ -64,6 +79,17 @@ class Reservation(models.Model):
         verbose_name_plural = 'Reservations'
         ordering = ['date_reservation']
         unique_together = ('desktop', 'date_reservation')
+
+    def save(self, *args, **kwargs):
+        time_start = timedelta(hours=self.start_hour.hour,
+                               minutes=self.start_hour.minute,
+                               seconds=self.start_hour.second).total_seconds()
+        time_end = timedelta(hours=self.finish_hour.hour,
+                             minutes=self.finish_hour.minute,
+                             seconds=self.finish_hour.second).total_seconds()
+        self.n_hours = float(((time_end - time_start) / 60) / 60)
+
+        super(Reservation, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f'{self.user}. Booking date {self.date_reservation} on the desktop {self.desktop}'
