@@ -2,7 +2,7 @@ from django.db import models
 
 from ..authentication.users.models import UsersModel
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 # Create your models here.
 
