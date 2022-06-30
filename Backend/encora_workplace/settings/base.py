@@ -68,10 +68,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
-     'DEFAULT_PERMISSIONS_CLASSES': [
-         'rest_framework.permissions.IsAuthenticated',
-         'rest_framework.permissions.DjangoModelPermissions'
-     ]
+#     'DEFAULT_PERMISSIONS_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+# #       'rest_framework.permissions.DjangoModelPermissions'
+#     ]
 }
 
 AUTH_USER_MODEL = 'users.UsersModel'
