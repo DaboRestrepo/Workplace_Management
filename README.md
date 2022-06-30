@@ -13,7 +13,7 @@ This application was thought to be use by the employees of a company, this one w
 
 ## Site flow
 
-![user has entered text and is ready to workplace the input](images/Organización Encora.jpg)
+![user has entered text and is ready to workplace the input](images/SiteFlow.jpg)
 
 ## Features
 
