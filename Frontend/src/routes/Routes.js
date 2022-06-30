@@ -5,7 +5,7 @@ import Menu from '../services/Menu';
 import Signup from '../services/Signup';
 
 
-export default function App () {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
