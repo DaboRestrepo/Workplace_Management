@@ -27,7 +27,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     ]
 
     username = models.CharField(
-        "User",
+        "Username",
         max_length=150,
         unique=True,
         help_text="Nombre de usuario, Requerido. 150 caracteres o menos.",
