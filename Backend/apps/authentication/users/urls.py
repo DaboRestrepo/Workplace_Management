@@ -8,4 +8,5 @@ route = routers.SimpleRouter()
 route.register('user', UserViewset)
 
 urlpatterns = route.urls
-urlpatterns += path('login',views.login),
+urlpatterns += path('login', views.login),
+urlpatterns += path('logout', views.logout),

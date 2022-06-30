@@ -52,11 +52,6 @@ class Reservation(models.Model):
         help_text="Número de horas reservadas"
     )
 
-    date_reservation = models.DateField(
-        'Reservation date',
-        help_text="Fecha reservada"
-    )
-
     date = models.DateField(
         'Current date',
         auto_now=True,
@@ -65,12 +60,12 @@ class Reservation(models.Model):
     )
 
     start_hour = models.DateTimeField(
-        'Start time (hh:mm:ss)',
+        'Start time (YYYY-MM-DD, hh:mm:ss)',
         help_text="Hora de inicio de la reserva"
     )
 
     finish_hour = models.DateTimeField(
-        'End time (hh:mm:ss)',
+        'End time (YYYY-MM-DD, hh:mm:ss)',
         help_text="Hora de finalización de la reserva"
     )
 
@@ -83,8 +78,8 @@ class Reservation(models.Model):
     class Meta:
         verbose_name = 'Reservation'
         verbose_name_plural = 'Reservations'
-        ordering = ['date_reservation']
-        unique_together = ('desktop', 'date_reservation')
+        ordering = ['start_hour']
+        unique_together = ('desktop', 'start_hour', 'finish_hour')
 
     def save(self, *args, **kwargs):
         time_start = timedelta(days=self.start_hour.day,
@@ -103,4 +98,4 @@ class Reservation(models.Model):
             super(Reservation, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f'{self.user}. Booking date {self.date_reservation} on the desktop {self.desktop}'
+        return f'{self.user}. Booking date {self.start_hour} on the desktop {self.desktop}'

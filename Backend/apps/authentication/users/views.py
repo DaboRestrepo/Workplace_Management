@@ -1,13 +1,14 @@
-
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework import status
 
 from django.contrib.auth import get_user_model
-# from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 
 User = get_user_model()
+
+
 @api_view(['POST'])
 def login(request):
 
@@ -26,3 +27,14 @@ def login(request):
 
     token, created = Token.objects.get_or_create(user=user)
     return Response(token.key)
+
+
+@api_view(['GET'])
+def logout(request, format=None):
+    # Query para identificar el id del usuario
+    # Identificar el user id en la BD de tokens
+    # delete() ese token
+    user_id = User.objects.all().first().id
+    token = request.query_params
+    print(token)
+    return Response(status=status.HTTP_200_OK)

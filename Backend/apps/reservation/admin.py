@@ -1,6 +1,4 @@
-from dataclasses import fields
 from import_export.admin import ImportExportActionModelAdmin
-
 from import_export import resources
 
 from django.contrib import admin
@@ -34,7 +32,8 @@ class ReservationResource(resources.ModelResource):
             "user",
             "desktop",
             "n_hours",
-            "date_reservation",
+            "start_hour",
+            "finish_hour",
             "date",
         )
 
