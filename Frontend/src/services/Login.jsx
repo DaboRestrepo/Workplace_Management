@@ -5,13 +5,13 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 
-const baseUrl = 'http://127.0.0.1:8000/api/encora_workplace/usersuser/';
+const baseUrl = 'http://127.0.0.1:8000/api/login';
 const cookies = new Cookies();
 
 export default class Login extends Component {
     state = {
         form:{
-            email: '',
+            username: '',
             password: ''
         }
     }
@@ -25,9 +25,12 @@ export default class Login extends Component {
         });
     }
 
+
     iniciarSesion = async() => {
-        await axios.get(baseUrl, {params: {email: this.state.form.email, password: this.state.form.password}})
+        console.log(this.state.form);
+        await axios.post(baseUrl, {username: this.state.form.username, password: this.state.form.password})
         .then(response => {
+            cookies.set('token', response.data)
             return response.data;
         })
         .then(response => {
@@ -52,12 +55,11 @@ export default class Login extends Component {
                 cookies.set('age', respuesta.age, {path: '/'});
                 cookies.set('groups', respuesta.groups, {path: '/'});
                 cookies.set('user_permissions', respuesta.user_permissions, {path: '/'});
-                alert(`Welcome ${respuesta.first_name}`);
 
                 window.location.href = './menu';
 
             } else{
-                alert('Email or password does not match');
+                alert('Username or password does not match');
             }
         })
         .catch(err => {
@@ -66,7 +68,7 @@ export default class Login extends Component {
     }
 
     componentDidMount() {
-        if (cookies.get('email')) {
+        if (cookies.get('username')) {
             window.location.href = './menu';
         }
     }
@@ -75,7 +77,7 @@ export default class Login extends Component {
         return (
             <div className='login-wrap'>
             	<div className='login-html'>
-            		<input id='tab-1' type='radio' name='tab' className='sign-in' defaultChecked /><label htmlFor='tab-1' className='tab'>Sign In</label>
+            		<input id='tab-1' type='radio' name='tab' className='sign-in' defaultChecked /><label htmlFor='tab-1' className='tab'>Login</label>
             		<input id='tab-2' type='radio' name='tab' className='for-pwd' /><label htmlFor='tab-2' className='tab'>Forgot Password</label>
             		<div className='login-form'>
             			<div className='sign-in-htm'>
@@ -84,7 +86,7 @@ export default class Login extends Component {
             					<input
                                     type='text'
                                     className='input'
-                                    name='email'
+                                    name='username'
                                     onChange={this.handleChange}
                                 />
             				</div>
@@ -98,10 +100,14 @@ export default class Login extends Component {
                                 />
             				</div>
             				<div className='group'>
-            					<input type='submit' className='button' value='Sign In' onClick={() => this.iniciarSesion()} />
+            					<input type='submit' className='button' value='Login' onClick={() => this.iniciarSesion()} />
             					{/* <input type='submit' className='button' value='Register' onClick={() => this.iniciarSesion()} /> */}
             				</div>
-                            <p className='linktext'>Don't have an account?<Link to='/signup' className='linktext'> Register</Link></p>
+                            {/* <p className='linktext'>Don't have an account?<Link to='/signup' className='linktext'> Register</Link></p> */}
+				            <div className="d-flex justify-content-center links">
+                                Don't have an account?&nbsp;
+                                <Link to='/signup' href="#">Register</Link>
+                            </div>
             				<div className='hr'></div>
             			</div>
             			<div className='for-pwd-htm'>
@@ -110,7 +116,7 @@ export default class Login extends Component {
             					<input
                                     type='text'
                                     className='input'
-                                    name='email'
+                                    name='username'
                                     onChange={this.handleChange}
                                 />
             				</div>

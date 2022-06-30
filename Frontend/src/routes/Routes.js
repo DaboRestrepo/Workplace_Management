@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from '../components/Login';
-import Menu from '../components/Menu';
-import SignupLayout from '../components/SignupLayout';
+import Login from '../services/Login';
+import Menu from '../services/Menu';
+import Signup from '../services/Signup';
+
 
 export default function App () {
   return (
@@ -10,7 +11,7 @@ export default function App () {
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/menu' element={<Menu />} />
-        <Route exact path='/signup' element={<SignupLayout />} />
+        <Route exact path='/signup' element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );

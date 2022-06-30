@@ -1,10 +1,12 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
 export default class Menu extends Component {
-    cerrarSesion=()=>{
+
+    cerrarSesion = () => {
         cookies.remove('id', {path: '/'});
         cookies.remove('last_login', {path: '/'});
         cookies.remove('is_superuser', {path: '/'});
@@ -29,31 +31,21 @@ export default class Menu extends Component {
     }
 
     componentDidMount() {
+        let config = {
+            headers: {
+                Authorization: 'Token ' + cookies.get('token'),
+            }
+          }
+        axios.get('http://127.0.0.1:8000/api/user/', config)
+        .then(response => {
+            console.log(response.data);
+        })
         if (!cookies.get('email')) {
             window.location.href = './';
         }
     }
 
     render() {
-        console.log('id: ' + cookies.get('id'));
-        console.log('last_login: ' + cookies.get('last_login'));
-        console.log('is_superuser: ' + cookies.get('is_superuser'));
-        console.log('username: ' + cookies.get('username'));
-        console.log('email: ' + cookies.get('email'));
-        console.log('first_name: ' + cookies.get('first_name'));
-        console.log('last_name: ' + cookies.get('last_name'));
-        console.log('full_name: ' + cookies.get('full_name'));
-        console.log('birthday: ' + cookies.get('birthday'));
-        console.log('gender: ' + cookies.get('gender'));
-        console.log('verification_code: ' + cookies.get('verification_code'));
-        console.log('is_staff: ' + cookies.get('is_staff'));
-        console.log('is_active: ' + cookies.get('is_active'));
-        console.log('date_joined: ' + cookies.get('date_joined'));
-        console.log('updated: ' + cookies.get('updated'));
-        console.log('order: ' + cookies.get('order'));
-        console.log('age: ' + cookies.get('age'));
-        console.log('groups: ' + cookies.get('groups'));
-        console.log('user_permissions: ' + cookies.get('user_permissions'));
         return (
             <div>
                 Menu Principal
