@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import '../css/Signup.css';
+import '../../css/Signup.css';
 
 export const Register = () => {
   const validate = Yup.object({

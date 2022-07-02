@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import '../css/Login.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
-import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import axios from 'axios';
+
+import styles from "../../css/Login.module.css";
+import logo from "../../assets/imgs/logo.png";
 
 const baseUrl = 'http://127.0.0.1:8000/api/login';
 const cookies = new Cookies();
+
 
 export default class Login extends Component {
   state = {
@@ -75,59 +77,67 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className='login-wrap'>
-        <div className='login-html'>
-          <input id='tab-1' type='radio' name='tab' className='sign-in' defaultChecked /><label htmlFor='tab-1' className='tab'>Login</label>
-          <input id='tab-2' type='radio' name='tab' className='for-pwd' /><label htmlFor='tab-2' className='tab'>Forgot Password</label>
-          <div className='login-form'>
-            <div className='sign-in-htm'>
-              <div className='group'>
-                <label htmlFor='user' className='label'>Username or Email</label>
-                <input
-                  type='text'
-                  className='input'
-                  name='username'
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className='group'>
-                <label htmlFor='pass' className='label'>Password</label>
-                <input
-                  type='password'
-                  className='input'
-                  name='password'
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className='group'>
-                <input type='submit' className='button' value='Login' onClick={() => this.iniciarSesion()} />
-                {/* <input type='submit' className='button' value='Register' onClick={() => this.iniciarSesion()} /> */}
-              </div>
-              {/* <p className='linktext'>Don't have an account?<Link to='/signup' className='linktext'> Register</Link></p> */}
-              <div className="d-flex justify-content-center links">
-                Don't have an account?&nbsp;
-                <Link to='/signup' href="#">Register</Link>
-              </div>
-              <div className='hr'></div>
-            </div>
-            <div className='for-pwd-htm'>
-              <div className='group'>
-                <label htmlFor='user' className='label'>Username or Email</label>
-                <input
-                  type='text'
-                  className='input'
-                  name='username'
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className='group'>
-                <input type='submit' className='button' value='Reset Password' />
-              </div>
-              <div className='hr'></div>
-            </div>
+      <div className={styles.container_login}>
+        <div className={styles.login_box}>
+
+          <img src={logo} alt="na sala logo" />
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            placeholder="Enter your email address"
+            autoComplete="on"
+            name="emai"
+            id="emai"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            id="password"
+            onChange={this.handleChange}
+          />
+          <div className={styles.btn_area}>
+            <button className={styles.btn} onClick={() => this.iniciarSesion(true)}>Login</button>
+          </div>
+          <div className="d-flex justify-content-center links">
+            Don't have an account?&nbsp;
+            <Link to='/signup' href="#">Register</Link>
           </div>
         </div>
       </div>
     );
   }
 }
+
+// return (
+//   <div className={styles.container_login}>
+//     <div className={styles.login_box}>
+
+//       <img src={logo} alt="na sala logo" />
+//       <label htmlFor="email">Email</label>
+//       <input
+//         type="text"
+//         placeholder="Enter your email address"
+//         autoComplete="on"
+//         name="emai"
+//         id="emai"
+//         onChange={handleChange}
+//       />
+//       <label htmlFor="password">Password</label>
+//       <input
+//         type="password"
+//         placeholder="Enter your password"
+//         id="password"
+//         onChange={handleChange}
+//       />
+//       <div className={styles.btn_area}>
+//         <button className={styles.btn} onClick={() => iniciarSesion(true)}>Login</button>
+//       </div>
+//       <div className="d-flex justify-content-center links">
+//         Don't have an account?&nbsp;
+//         <Link to='/signup' href="#">Register</Link>
+//       </div>
+//     </div>
+//   </div>
+// );
