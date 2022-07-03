@@ -31,11 +31,11 @@ class ReservationResource(resources.ModelResource):
         fields = (
             "user",
             "desktop",
-            "n_hours",
             "start_hour",
             "finish_hour",
             "date",
         )
+        readonly_fields = ('n_hours',)
 
 
 @admin.register(Reservation)

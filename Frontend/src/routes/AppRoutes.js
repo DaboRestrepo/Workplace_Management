@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from '../components/pages/Login';
-import HomePage from '../components/pages/HomePage';
-import Signup from '../components/pages/Signup';
 
+import Login from '../components/pages/Login';
+import Signup from '../components/pages/Signup';
+import HomePage from '../components/pages/HomePage';
+import ReservationForm from '../components/pages/ReservationForm';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route exact path='/' element={<Login />} />
         <Route exact path='/homepage' element={<HomePage />} />
         <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/reservationform' element={<ReservationForm />} />
       </Routes>
     </BrowserRouter>
   );
