@@ -31,21 +31,16 @@
     color:teal;
 }
 
-.card-body {
-    
-}
-
-
 .datepicker1 {
     margin-top: 20px;
     width: 70%;
-    border: solid 2px green;
+    border: solid 2px;
 }
 
 .datepicker2 {
     margin-top: 20px;
     width: 70%;
-    border: solid 2px orange;
+    border: solid 2px;
 }
 
 .text-label {
