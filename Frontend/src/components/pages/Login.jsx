@@ -28,7 +28,7 @@ export default class Login extends Component {
   }
 
 
-  iniciarSesion = async () => {
+  signIn = async () => {
     console.log(this.state.form);
     await axios.post(baseUrl, { username: this.state.form.username, password: this.state.form.password })
       .then(response => {
@@ -58,7 +58,7 @@ export default class Login extends Component {
           cookies.set('groups', respuesta.groups, { path: '/' });
           cookies.set('user_permissions', respuesta.user_permissions, { path: '/' });
 
-          window.location.href = './menu';
+          window.location.href = './homepage';
 
         } else {
           alert('Username or password does not match');
@@ -71,7 +71,7 @@ export default class Login extends Component {
 
   componentDidMount() {
     if (cookies.get('username')) {
-      window.location.href = './menu';
+      window.location.href = './homepage';
     }
   }
 
@@ -80,7 +80,7 @@ export default class Login extends Component {
       <div className={styles.container_login}>
         <div className={styles.login_box}>
 
-          <img src={logo} alt="na sala logo" />
+          <img src={logo} alt="logotype" />
           <label htmlFor="email">Email</label>
           <input
             type="text"
@@ -98,7 +98,7 @@ export default class Login extends Component {
             onChange={this.handleChange}
           />
           <div className={styles.btn_area}>
-            <button className={styles.btn} onClick={() => this.iniciarSesion(true)}>Login</button>
+            <button className={styles.btn} onClick={() => this.signIn(true)}>Login</button>
           </div>
           <div className="d-flex justify-content-center links">
             Don't have an account?&nbsp;
@@ -109,35 +109,3 @@ export default class Login extends Component {
     );
   }
 }
-
-// return (
-//   <div className={styles.container_login}>
-//     <div className={styles.login_box}>
-
-//       <img src={logo} alt="na sala logo" />
-//       <label htmlFor="email">Email</label>
-//       <input
-//         type="text"
-//         placeholder="Enter your email address"
-//         autoComplete="on"
-//         name="emai"
-//         id="emai"
-//         onChange={handleChange}
-//       />
-//       <label htmlFor="password">Password</label>
-//       <input
-//         type="password"
-//         placeholder="Enter your password"
-//         id="password"
-//         onChange={handleChange}
-//       />
-//       <div className={styles.btn_area}>
-//         <button className={styles.btn} onClick={() => iniciarSesion(true)}>Login</button>
-//       </div>
-//       <div className="d-flex justify-content-center links">
-//         Don't have an account?&nbsp;
-//         <Link to='/signup' href="#">Register</Link>
-//       </div>
-//     </div>
-//   </div>
-// );
