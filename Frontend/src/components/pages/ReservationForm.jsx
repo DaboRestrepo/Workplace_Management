@@ -49,9 +49,13 @@ function ReservationForm () {
                 </div>
               </div>
             </div>
-            <div className='btn-group' role='group'>
-              <button className='btn-save btn-success' type='button'>Save</button>
-              <button className='btn-cancel btn-danger' type='link'>Cancel</button>
+            <div className='row'>
+              <div className='col'>
+                <button className='btn-save' type='button'>Save</button>
+              </div>
+              <div className='col'>
+                <button className='btn-cancel' type='link'>Cancel</button>
+              </div>
             </div>
           </div>
         </div>
