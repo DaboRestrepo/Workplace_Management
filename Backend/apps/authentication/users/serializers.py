@@ -6,7 +6,7 @@ class UserTokenSerializer(serializers.ModelSerializer):
     """Serializer to be used in the token"""
     class Meta:
         model = UsersModel
-        fields = ('id', 'email', 'full_name')
+        fields = ('id', 'email', 'full_name')    
 
 
 class UserSerializer(serializers.ModelSerializer):
