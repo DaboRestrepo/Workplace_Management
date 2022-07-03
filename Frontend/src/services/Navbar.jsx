@@ -54,10 +54,10 @@ class NavBar extends Component {
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className={styles.navbar}>
         <Container>
-          <Link to={"/homepage"}>
+          <Link to={"/newreservationpage"}>
             <Navbar.Brand>
               <img src={logo} alt="logotype" />
-              Encora
+              Encora reserves
             </Navbar.Brand>
           </Link>
           <Navbar.Text className="justify-items-center">Welcome {cookies.get('first_name')}</Navbar.Text>
@@ -81,14 +81,6 @@ class NavBar extends Component {
               <Nav.Link className={styles.navbar_target} to={'/'} onClick={() => this.logout(true)}>
                 Logout
               </Nav.Link>
-              <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
-                <form class="navbar-form navbar-right" role="logout">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Logout" />
-                  </div>
-                  <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-logout" aria-hidden="true"></span></button>
-                </form>
-              </div>
             </Nav>
           </Navbar.Collapse>
         </Container >
