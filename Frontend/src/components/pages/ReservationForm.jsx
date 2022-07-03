@@ -27,7 +27,7 @@ function ReservationForm () {
                     timeFormat='HH:mm'
                     timeIntervals={60}
                     timeCaption='time'
-                    dateFormat='Pp'
+                    dateFormat='yyyy-MM-dd HH:mm:ss'
                     withPortal
                   />
                 </div>
@@ -40,10 +40,10 @@ function ReservationForm () {
                     selected={finishDate}
                     onChange={(date) => setFinishDate(date)}
                     showTimeSelect
-                    timeFormat='p'
+                    timeFormat='HH:mm'
                     timeIntervals={60}
                     timeCaption='time'
-                    dateFormat='Pp'
+                    dateFormat='yyyy-MM-dd HH:mm:ss'
                     withPortal
                   />
                 </div>
