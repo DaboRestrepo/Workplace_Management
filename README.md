@@ -28,3 +28,4 @@ This application was thought to be use by the employees of a company, this one w
 ## Future of Workplace Management
 
 ## About us
+
