@@ -9,10 +9,10 @@
     padding: 300px;
 }
 
-.container {
+/* .container {
     padding: 20px;
-    /*border: solid purple;*/
-}
+    border: solid purple;
+} */
 
 .row {
     display: flex;
@@ -70,4 +70,8 @@
 
 .btn-save, .btn-cancel:hover {
     transition: 0.7s;
+}
+
+.loading-text {
+    color: green;
 }

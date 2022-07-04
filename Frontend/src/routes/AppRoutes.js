@@ -13,7 +13,7 @@ export default function App() {
         <Route exact path='/' element={<Login />} />
         <Route exact path='/homepage' element={<HomePage />} />
         <Route exact path='/signup' element={<Signup />} />
-        <Route exact path='/reservationform' element={<ReservationForm />} />
+        <Route exact path='/newreservationpage' element={<ReservationForm />} />
       </Routes>
     </BrowserRouter>
   );
