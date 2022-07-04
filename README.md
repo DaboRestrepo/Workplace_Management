@@ -25,7 +25,7 @@ This application was thought to be use by the employees of a company, this one w
 | Reservation page | Has the functionality to set the date and time of the reservation.
 
 ## How to use it?
-First clone the repo and downland the needed functionalities:
+First clone the repo and download the needed functionalities:
 ### Back-end:
 * Django==4.0.5
 * django-cors-headers==3.13.0
