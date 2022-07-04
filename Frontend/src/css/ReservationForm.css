@@ -71,3 +71,7 @@
 .btn-save, .btn-cancel:hover {
     transition: 0.7s;
 }
+
+.loading-text {
+    color: green;
+}
