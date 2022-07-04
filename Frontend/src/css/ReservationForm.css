@@ -9,10 +9,10 @@
     padding: 300px;
 }
 
-.container {
+/* .container {
     padding: 20px;
-    /*border: solid purple;*/
-}
+    border: solid purple;
+} */
 
 .row {
     display: flex;

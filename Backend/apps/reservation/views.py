@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 
+from rest_framework.response import Response
+
 from apps.reservation.models import Desktop, Reservation
 
 
@@ -32,8 +34,7 @@ def check_reservation(request, pk=None):
             # Si alguno de los casos es true, abortar y renderizar error.
             if case_1 or case_2 or case_3:
                 # Buscar si se puede desactivar el botón de reserva en estos casos.
-                return render(request, "Volver a la pag de reservación.",
-                              {"errors": "This desktop is unavailable."})
+                return Response({"errors": "This desktop is unavailable."})
             # Si la fecha es válida.
             reservarion = Reservation(
                 start_time=start_time,
@@ -44,5 +45,5 @@ def check_reservation(request, pk=None):
             # Guardar reservación.
             reservarion.save()
             # Redirigir a página de éxito.
-            return redirect("página de current reserves")
-        return render(request, "página siguiente.")
+            return redirect("/current_reserves.html")
+        return render(request, "/current_reserves.html")
