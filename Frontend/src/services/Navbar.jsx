@@ -55,7 +55,7 @@ class NavBar extends Component {
     return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className={styles.navbar}>
         <Container>
-          <Link to={"/newreservationpage"}>
+          <Link to={"/encora_map"}>
             <Navbar.Brand>
               <img src={logo} alt="logotype" />
               Encora reserves
