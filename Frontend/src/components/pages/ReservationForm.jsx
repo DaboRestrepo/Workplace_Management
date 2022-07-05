@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import '../../css/ReservationForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import encorapurple from '../../assets/imgs/encorapurple.PNG';
+import OffcanvasHeader from 'react-bootstrap/esm/OffcanvasHeader';
 
 const baseUrl = 'http://127.0.0.1:8000/api/reservation';
 
@@ -12,6 +16,11 @@ function ReservationForm () {
   const [startDate, setStartDate] = useState(new Date());
   const [finishDate, setFinishDate] = useState(new Date());
   const [isLoading, setIsloading] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleClick = async () => {
     setIsloading(true);
@@ -70,15 +79,38 @@ function ReservationForm () {
                   />
                 </div>
               </div>
-            </div>
-            <div className='row'>
-              <div className='col'>
-                <button className='btn-save' type='submit' onClick={handleClick}>Save</button>
-                {isLoading && <h2 className='loading-text'>Loading...</h2>}
-              </div>
-              <div className='col'>
-                <button className='btn-cancel' type='link'>Cancel</button>
-              </div>
+              <br />
+              <Button variant='primary' onClick={handleShow}>
+                Select your Desk
+              </Button>
+
+              <Offcanvas show={show} onHide={handleClose}>
+                <OffcanvasHeader closeButton>
+                  <Offcanvas.Title>Select your Desktop</Offcanvas.Title>
+                </OffcanvasHeader>
+                <Offcanvas.Body>
+                  <div className='input-group mb-3'>
+                    <select className='form-select' id='inputGroupSelect03' aria-label='Example select with button addon'>
+                      <option selected>Choose your Desktop...</option>
+                      <option value='1'>Desktop 1</option>
+                      <option value='2'>Desktop 2</option>
+                      <option value='3'>Desktop 3</option>
+                    </select>
+                  </div>
+                  <div className='row'>
+                    <div className='col'>
+                      <button className='btn-save' type='submit' onClick={handleClick}>Reserve</button>
+                      {isLoading && <h2 className='loading-text'>Loading...</h2>}
+                    </div>
+                    <div className='col'>
+                      <Link to='/myreservations'>
+                        <button className='btn-cancel'>Cancel</button>
+                      </Link>
+                    </div>
+                  </div>
+                </Offcanvas.Body>
+              </Offcanvas>
+              <br />
             </div>
           </div>
         </div>
