@@ -8,6 +8,7 @@ import styles from "../css/Navbar.module.css";
 import logo from "../assets/imgs/logo.png";
 
 const cookies = new Cookies();
+const baseURL = 'http://localhost:8000/api/user/';
 
 class NavBar extends Component {
 
@@ -41,7 +42,7 @@ class NavBar extends Component {
         Authorization: 'Token ' + cookies.get('token'),
       }
     }
-    axios.get('http://127.0.0.1:8000/api/user/', config)
+    axios.get(baseURL, config)
       .then(response => {
         console.log(response.data);
       })
@@ -65,7 +66,7 @@ class NavBar extends Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              {cookies.get('is_superuser') === true ? (
+              {cookies.get(baseURL) === 'is_staff' ? (
                 <Link to={"/admin"} className={styles.navbar_target}>
                   Admin
                 </Link>

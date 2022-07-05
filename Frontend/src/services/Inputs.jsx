@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Inputs.module.css";
+import styles from "../css/Inputs.module.css";
 
 export const InputEffect = ({ type, textLabel, name, handleOnChange, value }) => {
   return (
