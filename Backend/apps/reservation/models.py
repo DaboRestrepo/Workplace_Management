@@ -1,5 +1,6 @@
 """This module soport the models of Desktop and reservations"""
 
+from enum import unique
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
@@ -32,7 +33,7 @@ class Desktop(models.Model):
     class Meta:
         verbose_name = 'Desktop'
         verbose_name_plural = 'Desktops'
-        ordering = ['n_desktop']
+        ordering = ['id']
 
     def __str__(self) -> str:
         return self.n_desktop
@@ -88,7 +89,7 @@ class Reservation(models.Model):
     class Meta:
         verbose_name = 'Reservation'
         verbose_name_plural = 'Reservations'
-        ordering = ['start_hour']
+        ordering = ['date']
         unique_together = ('desktop', 'start_hour', 'finish_hour')
 
     def save(self, *args, **kwargs):
