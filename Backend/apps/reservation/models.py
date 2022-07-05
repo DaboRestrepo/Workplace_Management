@@ -109,6 +109,19 @@ class Reservation(models.Model):
         print(current_date)
         if current_date < self.start_hour.day:
             raise Exception('The start date and the end date has to be in the future.')
+        case_1 = Reservation.objects.filter(desktop=self.desktop,
+                                            start_hour__lte=self.start_hour,
+                                            finish_hour__gte=self.finish_hour).exists()
+        # Caso 2: un escritorio está reservado antes de que se requiera el end_time,
+        # y el end_time es requerido después del end_time.
+        case_2 = Reservation.objects.filter(desktop=self.desktop,
+                                            start_hour__lte=self.finish_hour,
+                                            finish_hour__gte=self.finish_hour).exists()
+        case_3 = Reservation.objects.filter(desktop=self.desktop,
+                                            start_hour__gte=self.start_hour,
+                                            finish_hour__lte=self.finish_hour).exists()
+        if case_1 or case_2 or case_3:
+            raise Exception('This desktop in unavailable')
 
         super(Reservation, self).save(*args, **kwargs)
 
