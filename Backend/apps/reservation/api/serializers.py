@@ -17,14 +17,6 @@ class ReservationSerializer(serializers.ModelSerializer):
         model = Reservation
         fields = '__all__'
 
-    # def validate_start_hour(self, value):
-    #     current_date = datetime.now().day
-    #     print(current_date)
-    #     if current_date > self.start_hour.day:
-    #         raise serializers.ValidationError('The start date and the end date\
-    #                                           has to be in the future.')
-    #     return value
-
     def to_representation(self, instance):
         """Represent the JSON with all the information."""
         return {
