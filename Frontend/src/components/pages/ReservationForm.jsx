@@ -9,7 +9,6 @@ import '../../css/ReservationForm.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import encorapurple from '../../assets/imgs/encorapurple.PNG';
 import OffcanvasHeader from 'react-bootstrap/esm/OffcanvasHeader';
-import DesktopInput from '../DesktopInput';
 
 const baseUrl = 'http://127.0.0.1:8000/api/reservation';
 
@@ -17,7 +16,6 @@ function ReservationForm () {
   const [startDate, setStartDate] = useState(new Date());
   const [finishDate, setFinishDate] = useState(new Date());
   const [isLoading, setIsloading] = useState(false);
-  const [desktop, setDesktop] = useState();
 
   const [show, setShow] = useState(false);
 
@@ -91,13 +89,17 @@ function ReservationForm () {
                   <Offcanvas.Title>Select your Desktop</Offcanvas.Title>
                 </OffcanvasHeader>
                 <Offcanvas.Body>
-                  <DesktopInput
-                    userDesktop={desktop}
-                    desktopChange={(desktop) => setDesktop(desktop.map(desktop => desktop.value))}
-                  />
+                  <div className='input-group mb-3'>
+                    <select className='form-select' id='inputGroupSelect03' aria-label='Example select with button addon'>
+                      <option selected>Choose your Desktop...</option>
+                      <option value='1'>Desktop 1</option>
+                      <option value='2'>Desktop 2</option>
+                      <option value='3'>Desktop 3</option>
+                    </select>
+                  </div>
                   <div className='row'>
                     <div className='col'>
-                      <button className='btn-save' type='submit' onClick={handleClick}>Save</button>
+                      <button className='btn-save' type='submit' onClick={handleClick}>Reserve</button>
                       {isLoading && <h2 className='loading-text'>Loading...</h2>}
                     </div>
                     <div className='col'>
