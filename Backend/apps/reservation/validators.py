@@ -4,29 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 
 
-def validate_maxValue(value):
-    """restring the max value."""
-    if value > 12:
-        raise ValidationError(
-            _('You cannot exceed the 12 hours.')
-        )
-
-
-def validate_minValue(value):
-    if value < 1:
-        raise ValidationError(
-            _('You cannot reserve less than 1 hour.')
-        )
-
-
 def validate_start_hour(value):
     current_date = datetime.now().day
     if current_date > value.day:
-        raise ValidationError(_('The start date and the end date\
-                                has to be in the future.'))
-
-
-def validate_n_hours(value):
-    if value < 1 or value > 12:
-        raise ValidationError(_('Your reservation has to be less than\
-                               12 hours and more than 1 hour.'))
+        raise ValidationError(_('The start date and the end date has to be in the future.'))
