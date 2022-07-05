@@ -37,84 +37,100 @@ export const Register = () => {
       onSubmit={values => {
         console.log(values);
       }}
-    >
-    </Formik>
+    />
   );
 };
 
-
-function Signup() {
+function Signup () {
   return (
-    <section className="login-block">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-4 login-sec">
-            <h2 className="text-center">Register Now</h2>
-            <form className="login-form">
+    <section className='login-block'>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-md-4 login-sec'>
+            <h2 className='text-center'>Register Now</h2>
+            <form className='login-form'>
 
-              <div className="form-group">
-                <label htmlFor="exampleInputName1" className="text-uppercase">Name</label>
-                <input type="text" className="form-control" placeholder="" />
+              <div className='form-group'>
+                <label htmlFor='validationCustom01' className='text-uppercase'>Name</label>
+                <input type='text' id='validationCustom01' className='form-control' placeholder='' required />
+                <div className='invalid-feedback'>
+                  Please provide Name
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputLastName1" className="text-uppercase">Last Name</label>
-                <input type="text" className="form-control" placeholder="" />
+              <div className='form-group'>
+                <label htmlFor='validationCustom02' className='text-uppercase'>Last Name</label>
+                <input type='text' id='validationCustum02' className='form-control' placeholder='' required />
+                <div className='invalid-feedback'>
+                  Please provide Last Name
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputUsername1" className="text-uppercase">Username</label>
-                <input type="text" className="form-control" placeholder="" />
+              <div className='form-group'>
+                <label htmlFor='validationCustum03' className='text-uppercase'>Username</label>
+                <input type='text' id='validationCustum03' className='form-control' placeholder='' required />
+                <div className='invalid-feedback'>
+                  Please provide Username
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1" className="text-uppercase">Email</label>
-                <input type="text" className="form-control" placeholder="" />
+              <div className='form-group'>
+                <label htmlFor='validationCustum04' className='text-uppercase'>Email</label>
+                <input type='text' id='validationCustum04' className='form-control' placeholder='' required />
+                <div className='invalid-feedback'>
+                  Please provide a Email
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1" className="text-uppercase">Password</label>
-                <input type="password" className="form-control" placeholder="" />
+              <div className='form-group'>
+                <label htmlFor='validationCustum05' className='text-uppercase'>Password</label>
+                <input type='password' id='validationCustum04' className='form-control' placeholder='' required />
+                <div className='invalid-feedback'>
+                  Please provide Password
+                </div>
               </div>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1" className="text-uppercase">Confirm Password</label>
-                <input type="password" className="form-control" placeholder="" />
+              <div className='form-group'>
+                <label htmlFor='validationCustum06' className='text-uppercase'>Confirm Password</label>
+                <input type='password' id='validationCustum06' className='form-control' placeholder='' required />
+                <div className='invalid-feedback'>
+                  Please Confirm Password
+                </div>
               </div>
 
-              <div className="form-check">
-                <button type="submit" className="btn btn-login float-right">Submit</button>
+              <div className='form-check'>
+                <button type='submit' className='btn btn-login float-right'>Submit</button>
               </div>
-              <div className="d-flex justify-content-center links2">Already have an account?&nbsp;
-                <Link to='/' href="#">Login</Link>
+              <div className='d-flex justify-content-center links2'>Already have an account?&nbsp;
+                <Link to='/' href='#'>Login</Link>
               </div>
             </form>
           </div>
-          <div className="col-md-8 banner-sec">
-            <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-              <ol className="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <div className='col-md-8 banner-sec'>
+            <div id='carouselExampleIndicators' className='carousel slide' data-ride='carousel'>
+              <ol className='carousel-indicators'>
+                <li data-target='#carouselExampleIndicators' data-slide-to='0' className='active' />
+                <li data-target='#carouselExampleIndicators' data-slide-to='1' />
+                <li data-target='#carouselExampleIndicators' data-slide-to='2' />
               </ol>
-              <div className="carousel-inner" role="listbox">
-                <div className="carousel-item active">
-                  <img className="d-block img-fluid" src="https://www.encora.com/hs-fs/hubfs/Press%20release.png?width=1253&name=Press%20release.png" alt="First slide" />
-                  <div className="carousel-caption d-none d-md-block">
-                    <div className="banner-text">
+              <div className='carousel-inner' role='listbox'>
+                <div className='carousel-item active'>
+                  <img className='d-block img-fluid' src='https://www.encora.com/hs-fs/hubfs/Press%20release.png?width=1253&name=Press%20release.png' alt='First slide' />
+                  <div className='carousel-caption d-none d-md-block'>
+                    <div className='banner-text'>
                       <h2>This is Heaven</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                     </div>
                   </div>
                 </div>
-                <div className="carousel-item">
-                  <img className="d-block img-fluid" src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg" alt="First slide" />
-                  <div className="carousel-caption d-none d-md-block">
-                    <div className="banner-text">
+                <div className='carousel-item'>
+                  <img className='d-block img-fluid' src='https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg' alt='First slide' />
+                  <div className='carousel-caption d-none d-md-block'>
+                    <div className='banner-text'>
                       <h2>This is Heaven</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                     </div>
                   </div>
                 </div>
-                <div className="carousel-item">
-                  <img className="d-block img-fluid" src="https://i.postimg.cc/wj2qWcz2/encora.jpg" alt="First slide" />
-                  <div className="carousel-caption d-none d-md-block">
-                    <div className="banner-text">
+                <div className='carousel-item'>
+                  <img className='d-block img-fluid' src='https://i.postimg.cc/wj2qWcz2/encora.jpg' alt='First slide' />
+                  <div className='carousel-caption d-none d-md-block'>
+                    <div className='banner-text'>
                       <h2>This is Heaven</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
                     </div>
