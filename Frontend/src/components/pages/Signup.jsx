@@ -1,17 +1,15 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import '../../css/Signup.css';
+import { TextField } from '../TextField';
 
-export const Register = () => {
+function Signup () {
   const validate = Yup.object({
-    firstName: Yup.string()
-      .min(3, 'Must be 15 characters or less')
-      .max(15, 'Must be 15 characters or less')
+    name: Yup.string()
       .required('Required'),
     lastName: Yup.string()
-      .max(20, 'Must be 20 characters or less')
       .required('Required'),
     email: Yup.string()
       .email('Email is invalid')
@@ -23,83 +21,56 @@ export const Register = () => {
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required')
   });
-
-  return (
-    <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      }}
-      validationSchema={validate}
-      onSubmit={values => {
-        console.log(values);
-      }}
-    />
-  );
-};
-
-function Signup () {
   return (
     <section className='login-block'>
       <div className='container'>
         <div className='row'>
           <div className='col-md-4 login-sec'>
             <h2 className='text-center'>Register Now</h2>
-            <form className='login-form'>
+            <Formik
+              initialValues={{
+                name: '',
+                lastName: '',
+                username: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+              }}
+              validationSchema={validate}
+              onSubmit={values => {
+                console.log(values);
+              }}
+            >
+              {formik => (
+                <Form className='login-form'>
 
-              <div className='form-group'>
-                <label htmlFor='validationCustom01' className='text-uppercase'>Name</label>
-                <input type='text' id='validationCustom01' className='form-control' placeholder='' required />
-                <div className='invalid-feedback'>
-                  Please provide Name
-                </div>
-              </div>
-              <div className='form-group'>
-                <label htmlFor='validationCustom02' className='text-uppercase'>Last Name</label>
-                <input type='text' id='validationCustum02' className='form-control' placeholder='' required />
-                <div className='invalid-feedback'>
-                  Please provide Last Name
-                </div>
-              </div>
-              <div className='form-group'>
-                <label htmlFor='validationCustum03' className='text-uppercase'>Username</label>
-                <input type='text' id='validationCustum03' className='form-control' placeholder='' required />
-                <div className='invalid-feedback'>
-                  Please provide Username
-                </div>
-              </div>
-              <div className='form-group'>
-                <label htmlFor='validationCustum04' className='text-uppercase'>Email</label>
-                <input type='text' id='validationCustum04' className='form-control' placeholder='' required />
-                <div className='invalid-feedback'>
-                  Please provide a Email
-                </div>
-              </div>
-              <div className='form-group'>
-                <label htmlFor='validationCustum05' className='text-uppercase'>Password</label>
-                <input type='password' id='validationCustum04' className='form-control' placeholder='' required />
-                <div className='invalid-feedback'>
-                  Please provide Password
-                </div>
-              </div>
-              <div className='form-group'>
-                <label htmlFor='validationCustum06' className='text-uppercase'>Confirm Password</label>
-                <input type='password' id='validationCustum06' className='form-control' placeholder='' required />
-                <div className='invalid-feedback'>
-                  Please Confirm Password
-                </div>
-              </div>
-
-              <div className='form-check'>
-                <button type='submit' className='btn btn-login float-right'>Submit</button>
-              </div>
-              <div className='d-flex justify-content-center links2'>Already have an account?&nbsp;
-                <Link to='/' href='#'>Login</Link>
-              </div>
-            </form>
+                  <div className='form-group'>
+                    <TextField label='NAME' name='name' type='text' />
+                  </div>
+                  <div className='form-group'>
+                    <TextField label='LAST NAME' name='lastName' type='text' />
+                  </div>
+                  <div className='form-group'>
+                    <TextField label='USERNAME' name='userName' type='text' />
+                  </div>
+                  <div className='form-group'>
+                    <TextField label='EMAIL' name='email' type='text' />
+                  </div>
+                  <div className='form-group'>
+                    <TextField label='PASSWORD' name='password' type='password' />
+                  </div>
+                  <div className='form-group'>
+                    <TextField label='CONFIRM PASSWORD' name='confirmPassword' type='password' />
+                  </div>
+                  <div className='form-check'>
+                    <button type='submit' className='btn btn-login float-right'>Submit</button>
+                  </div>
+                  <div className='d-flex justify-content-center links2'>Already have an account?&nbsp;
+                    <Link to='/' href='#'>Login</Link>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
           <div className='col-md-8 banner-sec'>
             <div id='carouselExampleIndicators' className='carousel slide' data-ride='carousel'>
