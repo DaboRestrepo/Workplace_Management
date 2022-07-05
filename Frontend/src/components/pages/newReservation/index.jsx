@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Card } from "react-bootstrap";
-
+import axios from 'axios';
 
 import NavBar from "../../../services/Navbar";
 import { FormButton } from "../../../services/Buttons";
@@ -98,7 +98,7 @@ const Newreservation = () => {
                     <ShowDateReservation reservation={newReservation} />
                   </Card.Text>
                   <Card.Text>
-                    <strong>Desk: </strong> {user.username}
+                    <strong>Desk: </strong> {axios.get('http://localhost:8000/api/desktop/')}
                   </Card.Text>
                   <FormButton text="Confirm" handleClick={e => handleSubmit(e)} />
                   <FormButton

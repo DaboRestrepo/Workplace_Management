@@ -5,7 +5,8 @@ import Login from "../components/pages/Login";
 import Signup from '../components/pages/Signup';
 import HomePage from "../components/pages/HomePage";
 import NewReservationPage from "../components/pages/newReservation/";
-import Myreservations from "../components/pages/my-reservations";
+import Myreservations from "../components/pages/MyBookings";
+import Map from '../services/Map';
 
 
 function AppRoutes() {
@@ -17,6 +18,7 @@ function AppRoutes() {
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/newreservationpage' element={<NewReservationPage />} />
         <Route exact path='/myreservations' element={<Myreservations />} />
+        <Route exact path='/encora_map' element={<Map />} />
       </Routes>
     </BrowserRouter>
   );
