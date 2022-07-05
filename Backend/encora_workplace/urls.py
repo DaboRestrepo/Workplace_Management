@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/encora_workplace/', include('apps.reservation.api.routers')),
+    path('api/', include('apps.reservation.api.routers')),
     path('api/', include('apps.authentication.users.urls')),
 ]

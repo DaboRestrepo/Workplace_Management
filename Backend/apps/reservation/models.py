@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.timezone import now
 
 from ..authentication.users.models import UsersModel
-from ..reservation.validators import validate_maxValue, validate_minValue
+from ..reservation.validators import validate_maxValue, validate_minValue, validate_start_hour
 from ..reservation.funtions import default_end
 
 from datetime import datetime, timedelta
@@ -57,6 +57,7 @@ class Reservation(models.Model):
     start_hour = models.DateTimeField(
         'Start time (YYYY-MM-DD, hh:mm:ss)',
         default=now,
+        validators=[validate_start_hour],
         help_text="Hora de inicio de la reserva"
     )
 
@@ -105,19 +106,14 @@ class Reservation(models.Model):
 
         if self.n_hours < 1 or self.n_hours > 12:
             raise Exception('Your reservation has to be less tha 12 hours and more than 1 hour.')
-        current_date = datetime.now().day
-        print(current_date)
-        if current_date < self.start_hour.day:
-            raise Exception('The start date and the end date has to be in the future.')
-        case_1 = Reservation.objects.filter(desktop=self.desktop,
+        desktop = self.desktop.id
+        case_1 = Reservation.objects.filter(desktop=desktop,
                                             start_hour__lte=self.start_hour,
                                             finish_hour__gte=self.finish_hour).exists()
-        # Caso 2: un escritorio está reservado antes de que se requiera el end_time,
-        # y el end_time es requerido después del end_time.
-        case_2 = Reservation.objects.filter(desktop=self.desktop,
+        case_2 = Reservation.objects.filter(desktop=desktop,
                                             start_hour__lte=self.finish_hour,
                                             finish_hour__gte=self.finish_hour).exists()
-        case_3 = Reservation.objects.filter(desktop=self.desktop,
+        case_3 = Reservation.objects.filter(desktop=desktop,
                                             start_hour__gte=self.start_hour,
                                             finish_hour__lte=self.finish_hour).exists()
         if case_1 or case_2 or case_3:
