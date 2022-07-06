@@ -87,7 +87,7 @@ function Signup () {
                     <div className='carousel-caption d-none d-md-block'>
                       <div className='banner-text'>
                         <h2>This is Heaven</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                        <p>Please register into the Encora Workplace Mangement app and let's share a moment togheter at our office!</p>
                       </div>
                     </div>
                   </div>
