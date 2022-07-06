@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-from rest_framework import status
 
 from ..models import Desktop, Reservation
 from .serializers import DesktopSerializer, ReservationSerializer
@@ -65,22 +64,6 @@ class ReservationViewset(ModelViewSet):
         response['data'] = serializer.data
         response['response'] = "Room is successfully booked"
         return Response(response, status=status.HTTP_201_CREATED, headers=headers)
-
-    def post(self, request, *args, **kwargs):
-        desktop = get_object_or_404(Desktop, pk=request.data['desktop'])
-        if desktop.status:
-            return Response({"response": "Desktop is already booked"}, status=status.HTTP_200_OK)
-        desktop.status = True
-        desktop.save()
-        start_date = Reservation.objects.create(
-            user=request.user,
-            desktop=desktop,
-            start_hour=request.data['start_hour'],
-            finish_hour=request.data['finish_hour'],
-            status=request.data['status'],
-        )
-        start_date.save()
-        return self.create(request, *args, **kwargs)
 
     def update(self, request, pk=None):
         if self.get_queryset(pk):
