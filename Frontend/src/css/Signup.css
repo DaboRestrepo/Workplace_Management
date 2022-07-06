@@ -18,19 +18,12 @@
     padding: 0px;
 }
 
-<<<<<<< HEAD
-/* .container {
-    border-radius: 10px;
-    box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
-} */
-=======
 .my_container {
     background: #fff;
     border-radius: 10px;
     box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
     padding: 0px 0px 0px 5px;
 }
->>>>>>> 2fde96efcc1e82bf056b215b9c3cb4987a3ff871
 
 .carousel-inner {
     border-radius: 0 10px 10px 0;
