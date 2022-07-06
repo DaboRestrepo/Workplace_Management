@@ -7,13 +7,12 @@ export const availableStations = async (object) => {
 }
 
 export const createBooking = async (object) => {
-  return await axios.post(baseURL, object)
+  return await axios.post('http://localhost:8000/api/reservation/', object)
 }
 
 export const submit = async (
   e,
   newReservation,
-  stationSelected,
   setShowErrorMsg,
   setFinalShowPickTime,
   navigate
@@ -22,18 +21,26 @@ export const submit = async (
   const today = Date.now();
   const dateSelected = new Date(newReservation.startDate).getTime();
   if (dateSelected < today) {
-    setShowErrorMsg('it is not possible to make the reservation, invalid date');
+    alert('it is not possible to make the reservation, invalid date');
     setFinalShowPickTime(false);
     return;
   }
-  const reservation = {
-    stationName: stationSelected.name,
-    ...newReservation,
-    username: axios.get('http://127.0.0.1:8000/api/user/')
-  };
   try {
-    await createBooking(reservation);
+    let start_hour = newReservation.startDate
+    let finish_hour = start_hour.split('T')[0] + 'T' + newReservation.finalDate
+    let desktop = localStorage.getItem('station')
+    let user = localStorage.getItem('user_id')
+    await createBooking(
+      {
+      "user": user,
+      "desktop": desktop,
+      "status": true,
+      "start_hour": start_hour,
+      "finish_hour": finish_hour,
+  },).then(res => {
+    localStorage.removeItem('station')
     navigate('/myreservations', { state: { message: 'Reserve created successfully!' } });
+  });
   } catch (err) {
     console.log(err);
     setShowErrorMsg('Some error occurred when making the reservation');
@@ -48,7 +55,7 @@ export const startTime = (
   setStationSelected,
   setShowErrorMsg
 ) => {
-  const startDate = new Date(e.target.value);
+  const startDate = e.target.value;
   setShowErrorMsg(false);
   setStationSelected(false);
   setNewReservation({ ...newReservation, [e.target.name]: startDate });
@@ -56,16 +63,13 @@ export const startTime = (
 };
 
 export const finalTime = (newReservation, e, setNewReservation) => {
-  const initialDate = new Date(newReservation.startDate);
-  const finalDate = new Date(
-    `${initialDate.getFullYear()}/${initialDate.getMonth() + 1}/${initialDate.getDate()} ${e.target.value}`
-  );
+  const finalDate = e.target.value
   setNewReservation({ ...newReservation, [e.target.name]: finalDate });
 };
 
 export const verifyAvailable = async (e, newReservation, setStationsAvailable, setShowPickStationAvailable) => {
   e.preventDefault();
-  const initialDate = new Date(newReservation.startDate);
+  const initialDate = (newReservation.startDate);
   const endDate = new Date(newReservation.finalDate);
   const stations = await availableStations({
     startDate: initialDate,
@@ -77,6 +81,7 @@ export const verifyAvailable = async (e, newReservation, setStationsAvailable, s
 
 export const handlePickSelected = (event, station, setStationSelected, setShowPickStationAvailable) => {
   event.preventDefault();
+  localStorage.setItem('station', station);
   setStationSelected(station);
   setShowPickStationAvailable(false);
 };

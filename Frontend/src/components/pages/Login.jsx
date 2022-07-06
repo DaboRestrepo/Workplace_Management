@@ -29,51 +29,30 @@ export default class Login extends Component {
 
 
   signIn = async () => {
-    console.log(this.state.form);
+    console.log(this.state.form.username);
     await axios.post(baseUrl, { username: this.state.form.username, password: this.state.form.password })
       .then(response => {
-        cookies.set('token', response.data)
-        return response.data;
-      })
-      .then(response => {
-        if (response.length > 0) {
-          var respuesta = response[0];
-          cookies.set('id', respuesta.id, { path: '/' });
-          cookies.set('last_login', respuesta.last_login, { path: '/' });
-          cookies.set('is_superuser', respuesta.is_superuser, { path: '/' });
-          cookies.set('username', respuesta.username, { path: '/' });
-          cookies.set('email', respuesta.email, { path: '/' });
-          cookies.set('first_name', respuesta.first_name, { path: '/' });
-          cookies.set('last_name', respuesta.last_name, { path: '/' });
-          cookies.set('full_name', respuesta.full_name, { path: '/' });
-          cookies.set('birthday', respuesta.birthday, { path: '/' });
-          cookies.set('gender', respuesta.gender, { path: '/' });
-          cookies.set('verification_code', respuesta.verification_code, { path: '/' });
-          cookies.set('is_staff', respuesta.is_staff, { path: '/' });
-          cookies.set('is_active', respuesta.is_active, { path: '/' });
-          cookies.set('date_joined', respuesta.date_joined, { path: '/' });
-          cookies.set('updated', respuesta.updated, { path: '/' });
-          cookies.set('order', respuesta.order, { path: '/' });
-          cookies.set('age', respuesta.age, { path: '/' });
-          cookies.set('groups', respuesta.groups, { path: '/' });
-          cookies.set('user_permissions', respuesta.user_permissions, { path: '/' });
-
-          window.location.href = './homepage';
-
+        console.log(response.data);
+        if (response.data === 'Usuario inválido' || response.data === 'Contraseña inválida') {
+          alert(response.data)
         } else {
-          alert('Username or password does not match');
-        }
+          localStorage.setItem('user_id', response.data.user_id);
+          localStorage.setItem('full_name', response.data.full_name);
+          cookies.set('token', response.data['token'])
+          cookies.set('email', response.data['email'])
+          window.location.href = './homepage';}
+        return response.data;
       })
       .catch(err => {
         console.log(err);
       })
   }
 
-  componentDidMount() {
-    if (cookies.get('username')) {
-      window.location.href = './homepage';
-    }
-  }
+  // componentDidMount() {
+  //   if (cookies.get('token')) {
+  //     window.location.href = './homepage';
+  //   }
+  // }
 
   render() {
     return (
@@ -86,8 +65,8 @@ export default class Login extends Component {
             type="text"
             placeholder="Enter your email address"
             autoComplete="on"
-            name="emai"
-            id="emai"
+            name="username"
+            id="username"
             onChange={this.handleChange}
           />
           <label htmlFor="password">Password</label>
@@ -95,10 +74,11 @@ export default class Login extends Component {
             type="password"
             placeholder="Enter your password"
             id="password"
+            name="password"
             onChange={this.handleChange}
           />
           <div className={styles.btn_area}>
-            <button className={styles.btn} onClick={() => this.signIn(true)}>Login</button>
+            <button className={styles.btn} onClick={() => this.signIn()}>Login</button>
           </div>
           <div className="d-flex justify-content-center links">
             Don't have an account?&nbsp;

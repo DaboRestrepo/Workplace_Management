@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, ListGroup, Card } from "react-bootstrap";
-import axios from 'axios';
 
 import NavBar from "../../../services/Navbar";
 import { FormButton } from "../../../services/Buttons";
@@ -30,6 +29,7 @@ const Newreservation = () => {
   const user = JSON.parse(recoveryUser);
   const navigate = useNavigate();
   const handleSubmit = e => {
+    console.log(newReservation);
     submit(e, newReservation, user, stationSelected, setShowErrorMsg, setFinalShowPickTime, navigate);
   };
 
@@ -44,9 +44,9 @@ const Newreservation = () => {
               <InputEffect
                 textLabel="Select a day and time:"
                 type="datetime-local"
-                name="startDate"
                 handleOnChange={e => startTime(e, setNewReservation, newReservation, setFinalShowPickTime, setStationSelected, setShowErrorMsg)}
-              />
+                name="startDate"
+                />
             </div>
             {showFinalPickTime ? (
               <div className={styles.date_time_zone}>
@@ -68,20 +68,17 @@ const Newreservation = () => {
           </Col>
           {showPickStationAvailable ? (
             <Col sm={6}>
-              <h2>Available desktop</h2>
+              <h2>Available desktops</h2>
               <ListGroup>
                 {stationsAvailable.map(station => {
+                  let desktopText = 'Choose desktop ' + station.id
                   return (
-                    <ListGroup.Item className={styles.list_area} key={station._id}>
-                      <img src={station.image} alt="Equipment" />
-                      <span>{station.name}</span>
-                      <FormButton
-                        text="Choose"
-                        handleClick={e =>
-                          handlePickSelected(e, station, setStationSelected, setShowPickStationAvailable)
-                        }
-                      />
-                    </ListGroup.Item>
+                    <FormButton
+                      text={desktopText}
+                      key={station.id}
+                      handleClick={e =>
+                       handlePickSelected(e, station.id, setStationSelected, setShowPickStationAvailable)}
+                    />
                   );
                 })}
               </ListGroup>
@@ -98,7 +95,7 @@ const Newreservation = () => {
                     <ShowDateReservation reservation={newReservation} />
                   </Card.Text>
                   <Card.Text>
-                    <strong>Desk: </strong> {axios.get('http://localhost:8000/api/desktop/')}
+                    <strong>Desk: </strong> {stationSelected.id}
                   </Card.Text>
                   <FormButton text="Confirm" handleClick={e => handleSubmit(e)} />
                   <FormButton

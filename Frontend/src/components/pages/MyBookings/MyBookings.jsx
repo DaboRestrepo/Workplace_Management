@@ -6,16 +6,16 @@ import styles from "../../../css/my-reservation.module.css";
 import ModalCustom from "../../../services/ModalCustom";
 import { FormButton } from "../../../services/Buttons";
 
-export const api = axios.create({
-  baseURL: "http://localhost:8000/api/desktop/"
-});
+
+const baseURL = 'http://localhost:8000/api/reservation/'
+
 
 export const getStation = async (name) => {
-  return await api.get(`/stations/${name}`)
+  return await axios.get(`/stations/${name}`)
 }
 
 export const deleteBooking = async (id) => {
-  return await api.delete(`/booking/${id}`)
+  return await axios.delete(`/booking/${id}`)
 }
 
 export const MyReservationList = ({ bookings }) => {
@@ -71,10 +71,10 @@ export const MyReservationList = ({ bookings }) => {
           <ListGroup.Item>
             <span>
               <strong>{bookings.stationName}: </strong>
-              {date} das {hour}:{minutes} às {hourFinal}:{minutesFinal}
+              {date} from {hour}:{minutes} to {hourFinal}:{minutesFinal}
             </span>
-            <FormButton text="deletar" handleClick={() => setShowModal(true)} />
-            <FormButton text="ver maca" handleClick={e => handleClick(e, bookings.stationName)} />
+            <FormButton text="delete" handleClick={() => setShowModal(true)} />
+            <FormButton text="see desktop" handleClick={e => handleClick(e, bookings.stationName)} />
           </ListGroup.Item>
         </ListGroup>
       ) : (
@@ -91,7 +91,7 @@ export const MyReservationList = ({ bookings }) => {
       <ModalCustom
         showModal={showModal}
         setShowModal={setShowModal}
-        title="Tem certeza que deseja exluir a reserva?"
+        title="Are you sure you want to delete the reservation?"
         handleConfirmClick={() => handleConfirmClick(bookings)}
       />
     </>

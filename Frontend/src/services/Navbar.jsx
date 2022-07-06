@@ -8,44 +8,20 @@ import styles from "../css/Navbar.module.css";
 import logo from "../assets/imgs/logo.png";
 
 const cookies = new Cookies();
-const baseURL = 'http://localhost:8000/api/user/';
+const baseURL = `http://localhost:8000/api/user/?q=${localStorage.getItem('user_id')}`;
 
 class NavBar extends Component {
 
   logout = () => {
-    cookies.remove('id', { path: '/' });
-    cookies.remove('last_login', { path: '/' });
-    cookies.remove('is_superuser', { path: '/' });
-    cookies.remove('username', { path: '/' });
+    cookies.remove('user_id', { path: '/' });
+    cookies.remove('token', { path: '/' });
     cookies.remove('email', { path: '/' });
-    cookies.remove('first_name', { path: '/' });
-    cookies.remove('last_name', { path: '/' });
-    cookies.remove('full_name', { path: '/' });
-    cookies.remove('birthday', { path: '/' });
-    cookies.remove('gender', { path: '/' });
-    cookies.remove('verification_code', { path: '/' });
-    cookies.remove('is_staff', { path: '/' });
-    cookies.remove('is_active', { path: '/' });
-    cookies.remove('date_joined', { path: '/' });
-    cookies.remove('updated', { path: '/' });
-    cookies.remove('order', { path: '/' });
-    cookies.remove('age', { path: '/' });
-    cookies.remove('groups', { path: '/' });
-    cookies.remove('user_permissions', { path: '/' });
+    localStorage.removeItem('user_id');
 
     window.location.href = './';
   };
 
   componentDidMount() {
-    let config = {
-      headers: {
-        Authorization: 'Token ' + cookies.get('token'),
-      }
-    }
-    axios.get(baseURL, config)
-      .then(response => {
-        console.log(response.data);
-      })
     if (!cookies.get('email')) {
       window.location.href = './';
     }
@@ -61,8 +37,7 @@ class NavBar extends Component {
               Encora reserves
             </Navbar.Brand>
           </Link>
-          <Navbar.Text className="justify-items-center">Welcome {cookies.get('first_name')}</Navbar.Text>
-
+          <Navbar.Text className="justify-items-center">Welcome {localStorage.getItem('full_name')}</Navbar.Text>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
