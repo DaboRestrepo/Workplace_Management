@@ -11,6 +11,8 @@ function Signup () {
       .required('Required'),
     lastName: Yup.string()
       .required('Required'),
+    username: Yup.string()
+      .required('Required'),
     email: Yup.string()
       .email('Email is invalid')
       .required('Email is required'),
@@ -51,7 +53,7 @@ function Signup () {
                       <TextField label='LAST NAME' name='lastName' type='text' />
                     </div>
                     <div className='form-group'>
-                      <TextField label='USERNAME' name='userName' type='text' />
+                      <TextField label='USERNAME' name='username' type='text' />
                     </div>
                     <div className='form-group'>
                       <TextField label='EMAIL' name='email' type='email' />
