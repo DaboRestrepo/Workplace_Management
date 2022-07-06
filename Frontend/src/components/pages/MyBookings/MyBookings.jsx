@@ -7,7 +7,7 @@ import ModalCustom from "../../../services/ModalCustom";
 import { FormButton } from "../../../services/Buttons";
 
 
-const baseURL = 'http://localhost:8000/api/reservation/'
+// const baseURL = 'http://localhost:8000/api/reservation/'
 
 
 export const getStation = async (name) => {

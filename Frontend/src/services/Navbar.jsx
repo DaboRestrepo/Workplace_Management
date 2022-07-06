@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import Cookies from 'universal-cookie';
-import axios from 'axios';
 
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../css/Navbar.module.css";
