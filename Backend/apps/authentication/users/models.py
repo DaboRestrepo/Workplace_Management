@@ -155,7 +155,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
         super(UsersModel, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f"{self.id} - {self.username} - {self.email}"
+        return f"{self.id} - {self.username} - {self.email} - {self.full_name}"
 
     def has_perm(self, perm, obj=None): return self.is_superuser
     def has_module_perms(self, app_label): return self.is_superuser

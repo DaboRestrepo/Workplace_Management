@@ -54,6 +54,8 @@ class ReservationViewset(ModelViewSet):
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
+        print("-----------------------------------------------------")
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response({"Message": "Successed"},
