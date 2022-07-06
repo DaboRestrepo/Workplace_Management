@@ -51,21 +51,9 @@ class ReservationViewset(ModelViewSet):
     serializer_class = ReservationSerializer
 
     def list(self, request):
-        reservation_serializer = self.get_serializer(self.get_queryset(),
-                                                     many=True)
+        reservation_serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response(reservation_serializer.data, status=status.HTTP_200_OK)
 
-<<<<<<< HEAD
-    def create(self, request):
-        serializer = self.serializer_class(data=request.data)
-        print("-----------------------------------------------------")
-        print(request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"Message": "Successed"},
-                            status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-=======
     def create(self, request, *args, **kwargs):
         response = {}
         serializer = self.get_serializer(data=request.data)
@@ -75,7 +63,6 @@ class ReservationViewset(ModelViewSet):
         response['data'] = serializer.data
         response['response'] = "Room is successfully booked"
         return Response(response, status=status.HTTP_201_CREATED, headers=headers)
->>>>>>> 2fde96efcc1e82bf056b215b9c3cb4987a3ff871
 
     def update(self, request, pk=None):
         if self.get_queryset(pk):

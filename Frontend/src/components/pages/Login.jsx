@@ -13,7 +13,7 @@ const cookies = new Cookies();
 export default class Login extends Component {
   state = {
     form: {
-      username: '',
+      email: '',
       password: ''
     }
   }
@@ -29,11 +29,11 @@ export default class Login extends Component {
 
 
   signIn = async () => {
-    console.log(this.state.form.username);
-    await axios.post(baseUrl, { username: this.state.form.username, password: this.state.form.password })
+    console.log(this.state.form.email);
+    await axios.post(baseUrl, { email: this.state.form.email, password: this.state.form.password })
       .then(response => {
         console.log(response.data);
-        if (response.data === 'Usuario inválido' || response.data === 'Contraseña inválida') {
+        if (response.data === 'Email inválido' || response.data === 'Contraseña inválida') {
           alert(response.data)
         } else {
           localStorage.setItem('user_id', response.data.user_id);
@@ -65,8 +65,8 @@ export default class Login extends Component {
             type="text"
             placeholder="Enter your email address"
             autoComplete="on"
-            name="username"
-            id="username"
+            name="email"
+            id="email"
             onChange={this.handleChange}
           />
           <label htmlFor="password">Password</label>

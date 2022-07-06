@@ -13,13 +13,13 @@ User = get_user_model()
 @api_view(['POST'])
 def login(request):
 
-    username = request.data.get('username')
+    email = request.data.get('email')
     password = request.data.get('password')
 
     try:
-        user = User.objects.get(username=username)
+        user = User.objects.get(email=email)
     except User.DoesNotExist:
-        return Response("Usuario inválido")
+        return Response("Email inválido")
 
     pwd_valid = check_password(password, user.password)
 
