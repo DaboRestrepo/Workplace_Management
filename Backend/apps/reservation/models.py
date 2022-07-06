@@ -1,14 +1,14 @@
 """This module soport the models of Desktop and reservations"""
 
-from enum import unique
 from django.db import models
 from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
 
 from ..authentication.users.models import UsersModel
-from ..reservation.validators import validate_maxValue, validate_minValue, validate_start_hour
+from ..reservation.validators import validate_start_hour
 from ..reservation.funtions import default_end
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 
 class Desktop(models.Model):
@@ -69,11 +69,10 @@ class Reservation(models.Model):
     )
 
     n_hours = models.DecimalField(
-        'Reserve hours',
+        'Reserved hours',
         default=12,
         max_digits=5,
         decimal_places=2,
-        validators=[validate_maxValue, validate_minValue],
         help_text="Número de horas reservadas"
     )
 
@@ -91,10 +90,7 @@ class Reservation(models.Model):
 
     def save(self, *args, **kwargs):
         """This method set requirements to be save:
-        * Measure the number of hours.
-        * If the number of hours is greater than 12, raise error.
-        * If the number of hours is less than 1, raise error.
-        * If the start date is in the past, raise error."""
+        * Measure the number of hours."""
         time_start = timedelta(days=self.start_hour.day,
                                hours=self.start_hour.hour,
                                minutes=self.start_hour.minute,
@@ -104,21 +100,6 @@ class Reservation(models.Model):
                              minutes=self.finish_hour.minute,
                              seconds=self.finish_hour.second).total_seconds()
         self.n_hours = float(((time_end - time_start) / 60) / 60)
-
-        if self.n_hours < 1 or self.n_hours > 12:
-            raise Exception('Your reservation has to be less tha 12 hours and more than 1 hour.')
-        desktop = self.desktop.id
-        case_1 = Reservation.objects.filter(desktop=desktop,
-                                            start_hour__lte=self.start_hour,
-                                            finish_hour__gte=self.finish_hour).exists()
-        case_2 = Reservation.objects.filter(desktop=desktop,
-                                            start_hour__lte=self.finish_hour,
-                                            finish_hour__gte=self.finish_hour).exists()
-        case_3 = Reservation.objects.filter(desktop=desktop,
-                                            start_hour__gte=self.start_hour,
-                                            finish_hour__lte=self.finish_hour).exists()
-        if case_1 or case_2 or case_3:
-            raise Exception('This desktop in unavailable')
 
         super(Reservation, self).save(*args, **kwargs)
 

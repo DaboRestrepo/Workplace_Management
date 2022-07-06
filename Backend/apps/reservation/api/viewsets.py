@@ -1,6 +1,9 @@
+from django.shortcuts import get_object_or_404
+
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
+
 from ..models import Desktop, Reservation
 from .serializers import DesktopSerializer, ReservationSerializer
 
@@ -52,6 +55,7 @@ class ReservationViewset(ModelViewSet):
                                                      many=True)
         return Response(reservation_serializer.data, status=status.HTTP_200_OK)
 
+<<<<<<< HEAD
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         print("-----------------------------------------------------")
@@ -61,6 +65,17 @@ class ReservationViewset(ModelViewSet):
             return Response({"Message": "Successed"},
                             status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+=======
+    def create(self, request, *args, **kwargs):
+        response = {}
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        response['data'] = serializer.data
+        response['response'] = "Room is successfully booked"
+        return Response(response, status=status.HTTP_201_CREATED, headers=headers)
+>>>>>>> 2fde96efcc1e82bf056b215b9c3cb4987a3ff871
 
     def update(self, request, pk=None):
         if self.get_queryset(pk):

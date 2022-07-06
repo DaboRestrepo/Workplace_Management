@@ -1,9 +1,9 @@
 .login-block {
     background: #ADE6D0;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #EBCEED, #C7CEEA);
+    background: -webkit-linear-gradient(to bottom, #F1F0CF, #ADE6D0);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #000000, #000000);
+    background: linear-gradient(to bottom, #EBCEED, #C7CEEA);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     float: left;
     width: 100%;
@@ -12,16 +12,25 @@
 
 .banner-sec {
     background: url(https://media-exp2.licdn.com/dms/image/C5616AQH1L6kklL33zw/profile-displaybackgroundimage-shrink_350_1400/0/1643647082769?e=1661990400&v=beta&t=m3PEFAu4xZEBfRufanjXmNPu5vlp4FXS4GBwRdW6SKY) no-repeat left bottom;
-    background-size: 100%;
+    background-size: 90%;
     min-height: 500px;
-    border-radius: 0 0px 0px 0;
-    padding: 0;
+    border-radius: 0 5px 5px 0;
+    padding: 0px;
 }
 
+<<<<<<< HEAD
 /* .container {
     border-radius: 10px;
     box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
 } */
+=======
+.my_container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
+    padding: 0px 0px 0px 5px;
+}
+>>>>>>> 2fde96efcc1e82bf056b215b9c3cb4987a3ff871
 
 .carousel-inner {
     border-radius: 0 10px 10px 0;
@@ -76,22 +85,43 @@
     background: #000000;
     color: #fff;
     font-weight: 600;
+    float: center;
+    border-radius: 5px;
 }
 
 .form-check {
     margin: 30px 85px 1px;
+    justify-content: center;
 }
 
-.banner-text {
-    width: 70%;
-    position: absolute;
-    bottom: 40px;
-    padding-left: 20px;
+@media screen and (max-width: 1600px) {
+    .banner-text {
+        width: 80%;
+        position: absolute;
+        bottom: 130%;
+        left: -20%;
+        padding-left: 0px;
+        text-align: justify;
+        text-justify: distribute;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .banner-text {
+        width: 80%;
+        position: absolute;
+        bottom: 85%;
+        left: -20%;
+        padding-left: 0px;
+        text-align: justify;
+        text-justify: distribute;
+    }
 }
 
 .banner-text h2 {
     color: #fff;
     font-weight: 600;
+    bottom: 4vw;
 }
 
 .banner-text h2:after {
