@@ -90,7 +90,8 @@
 .banner-text {
     width: 70%;
     position: absolute;
-    bottom: 40px;
+    bottom: 120%;
+    left: -20%;
     padding-left: 0px;
     text-align: justify;
     text-justify: distribute;
@@ -99,6 +100,7 @@
 .banner-text h2 {
     color: #fff;
     font-weight: 600;
+    bottom: 4vw;
 }
 
 .banner-text h2:after {

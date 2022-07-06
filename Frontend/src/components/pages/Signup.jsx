@@ -86,7 +86,7 @@ function Signup () {
                     <img className='d-block img-fluid' src='https://www.encora.com/hs-fs/hubfs/Press%20release.png?width=1253&name=Press%20release.png' alt='First slide' />
                     <div className='carousel-caption d-none d-md-block'>
                       <div className='banner-text'>
-                        <h2>This is Heaven</h2>
+                        <h2>Lets Work Togheter!</h2>
                         <p>Please register into the Encora Workplace Mangement app and let's share a moment togheter at our office!</p>
                       </div>
                     </div>
@@ -95,8 +95,8 @@ function Signup () {
                     <img className='d-block img-fluid' src='https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg' alt='First slide' />
                     <div className='carousel-caption d-none d-md-block'>
                       <div className='banner-text'>
-                        <h2>This is Heaven</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+                        <h2>Lets work togheter</h2>
+                        <p>Please register into the Encora Workplace Management app and let's share a moment together at our office!</p>
                       </div>
                     </div>
                   </div>
