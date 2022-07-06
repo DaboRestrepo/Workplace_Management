@@ -87,14 +87,28 @@
     justify-content: center;
 }
 
-.banner-text {
-    width: 70%;
-    position: absolute;
-    bottom: 120%;
-    left: -20%;
-    padding-left: 0px;
-    text-align: justify;
-    text-justify: distribute;
+@media screen and (max-width: 1600px) {
+    .banner-text {
+        width: 80%;
+        position: absolute;
+        bottom: 130%;
+        left: -20%;
+        padding-left: 0px;
+        text-align: justify;
+        text-justify: distribute;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .banner-text {
+        width: 80%;
+        position: absolute;
+        bottom: 85%;
+        left: -20%;
+        padding-left: 0px;
+        text-align: justify;
+        text-justify: distribute;
+    }
 }
 
 .banner-text h2 {
