@@ -36,7 +36,7 @@ class NavBar extends Component {
               Encora reserves
             </Navbar.Brand>
           </Link>
-          <Navbar.Text className="justify-items-center">Welcome {localStorage.getItem('full_name')}</Navbar.Text>
+          <Link className={styles.navbar_target} to={"/myreservations"}>Welcome {localStorage.getItem('full_name')}</Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -50,8 +50,8 @@ class NavBar extends Component {
               <Link className={styles.navbar_target} to={"/homepage"}>
                 Home
               </Link>
-              <Link className={styles.navbar_target} to={"/myreservations"}>
-                My bookings
+              <Link className={styles.navbar_target} to={"/newreservationpage"}>
+                New Reserve
               </Link>
               <Nav.Link className={styles.navbar_target} to={'/'} onClick={() => this.logout(true)}>
                 Logout

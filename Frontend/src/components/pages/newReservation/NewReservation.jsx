@@ -32,15 +32,16 @@ export const submit = async (
     let user = localStorage.getItem('user_id')
     await createBooking(
       {
-      "user": user,
-      "desktop": desktop,
-      "status": true,
-      "start_hour": start_hour,
-      "finish_hour": finish_hour,
-  },).then(res => {
-    localStorage.removeItem('station')
-    navigate('/myreservations', { state: { message: 'Reserve created successfully!' } });
-  });
+        "user": user,
+        "desktop": desktop,
+        "status": true,
+        "start_hour": start_hour,
+        "finish_hour": finish_hour,
+      }).then(res => {
+        localStorage.removeItem('station')
+        if (window.location.href = './myreservations')
+          navigate({ state: { message: 'Reserve created successfully!' } });
+      });
   } catch (err) {
     console.log(err);
     setShowErrorMsg('Some error occurred when making the reservation');

@@ -7,15 +7,19 @@ import ModalCustom from "../../../services/ModalCustom";
 import { FormButton } from "../../../services/Buttons";
 
 
-// const baseURL = 'http://localhost:8000/api/reservation/'
+const baseURL = `http://localhost:8000/api/reservation/${localStorage.getItem('user_id')}`
+
+console.log(baseURL)
 
 
 export const getStation = async (name) => {
-  return await axios.get(`/stations/${name}`)
+  return await axios.get(baseURL).then((response) => {
+    console.log(response)
+  })
 }
 
 export const deleteBooking = async (id) => {
-  return await axios.delete(`/booking/${id}`)
+  return await axios.delete(baseURL)
 }
 
 export const MyReservationList = ({ bookings }) => {

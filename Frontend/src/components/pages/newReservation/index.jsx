@@ -31,7 +31,8 @@ const Newreservation = () => {
   const handleSubmit = e => {
     console.log(newReservation);
     submit(e, newReservation, user, stationSelected, setShowErrorMsg, setFinalShowPickTime, navigate);
-  };
+    // window.location.href = './myreservations';
+  }
 
   return (
     <form className={styles.newReservation_area}>
@@ -46,7 +47,7 @@ const Newreservation = () => {
                 type="datetime-local"
                 handleOnChange={e => startTime(e, setNewReservation, newReservation, setFinalShowPickTime, setStationSelected, setShowErrorMsg)}
                 name="startDate"
-                />
+              />
             </div>
             {showFinalPickTime ? (
               <div className={styles.date_time_zone}>
@@ -77,7 +78,7 @@ const Newreservation = () => {
                       text={desktopText}
                       key={station.id}
                       handleClick={e =>
-                       handlePickSelected(e, station.id, setStationSelected, setShowPickStationAvailable)}
+                        handlePickSelected(e, station.id, setStationSelected, setShowPickStationAvailable)}
                     />
                   );
                 })}

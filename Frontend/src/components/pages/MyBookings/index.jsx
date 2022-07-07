@@ -9,9 +9,9 @@ import NavBar from '../../../services/Navbar';
 
 const baseURL = 'http://localhost:8000/api/reservation/';
 
-export const getMyBookings = async (user) => {
-  return await axios.get(baseURL, user)
-}
+// export const getMyBookings = async (email) => {
+//   return await axios.get(baseURL, email)
+// }
 
 const Myreservations = () => {
   const [showMsg, setShowMsg] = useState(false);
@@ -31,8 +31,8 @@ const Myreservations = () => {
 
     try {
       const get = async () => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        const bookings = await getMyBookings(user.user);
+        const userId = JSON.parse(localStorage.getItem('user_id'));
+        axios.get(baseURL)
         if (bookings.data.length === 0) {
           setErrorMsg('no bookings made by you')
           setIsLoading(false)
