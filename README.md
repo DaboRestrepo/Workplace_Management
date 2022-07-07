@@ -88,4 +88,4 @@ Shara García Betancur - Github: [SharaGB](https://github.com/SharaGB) - Email: 
 
 Sergio Balcázar Restrepo - Github: [SergioBalca](https://github.com/SergioBalca) - Email: 3896@holbertonschool.com
 
-Daniela Botero Restrepo - Github: [SergioBalca](https://github.com/DaboRestrepo) - Email: 3786@holbertonschool.com
+Daniela Botero Restrepo - Github: [DaboRestrepo](https://github.com/DaboRestrepo) - Email: 3786@holbertonschool.com
